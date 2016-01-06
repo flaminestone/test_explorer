@@ -15,6 +15,7 @@ class TestsController < ApplicationController
   # GET /tests/new
   def new
     @test = Test.new
+    @section = get_section
   end
 
   # GET /tests/1/edit
@@ -29,7 +30,8 @@ class TestsController < ApplicationController
 
     respond_to do |format|
       if @test.save
-        format.html { redirect_to @test, notice: 'Test was successfully created.' }
+        get_section.tests << @test
+        format.html { redirect_to  section_test_path(get_section, @test), notice: 'Test was successfully created.' }
         format.json { render :show, status: :created, location: @test }
       else
         format.html { render :new }
@@ -57,7 +59,7 @@ class TestsController < ApplicationController
   def destroy
     @test.destroy
     respond_to do |format|
-      format.html { redirect_to tests_url, notice: 'Test was successfully destroyed.' }
+      format.html { redirect_to section_tests_path(get_section), notice: 'Test was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
