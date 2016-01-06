@@ -2,5 +2,6 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @test %> |
-<%= link_to 'Back', tests_path %>
+
+<%= link_to 'Show',  controller: "tests", action: "show", id: @test %>
+<%= link_to 'Show',  controller: "tests", action: "index" %>

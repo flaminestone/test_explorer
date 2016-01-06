@@ -19,6 +19,7 @@ class TestsController < ApplicationController
 
   # GET /tests/1/edit
   def edit
+    @section = get_section
   end
 
   # POST /tests
@@ -42,7 +43,7 @@ class TestsController < ApplicationController
   def update
     respond_to do |format|
       if @test.update(test_params)
-        format.html { redirect_to @test, notice: 'Test was successfully updated.' }
+        format.html { redirect_to section_test_path(get_section, @test), notice: 'Test was successfully updated.' }
         format.json { render :show, status: :ok, location: @test }
       else
         format.html { render :edit }
@@ -70,5 +71,9 @@ class TestsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def test_params
       params.require(:test).permit(:name)
+    end
+
+    def get_section
+      Section.find(params.require(:section_id))
     end
 end
