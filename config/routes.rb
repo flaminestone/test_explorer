@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
-  resources :tests
-
-  resources :sections
-
+  resources :sections do
+    resources :tests
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

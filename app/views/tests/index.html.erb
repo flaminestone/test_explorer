@@ -14,14 +14,13 @@
     <% @tests.each do |test| %>
       <tr>
         <td><%= test.name %></td>
-        <td><%= link_to 'Show', test %></td>
-        <td><%= link_to 'Edit', edit_test_path(test) %></td>
-        <td><%= link_to 'Destroy', test, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', controller: "tests", action: "show", id: test %></td>
+        <td><%= link_to 'Edit', controller: "tests", action: "edit", id: test %></td>
+        <td><%= link_to 'Destroy',{controller: "tests",action: "destroy", id: test }, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Test', new_test_path %>
+<%= link_to 'New Test',  controller: "tests", action: "new" %>
