@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'sections#index'
+  post 'block/:id' => 'sections#block'
+  post 'unblock/:id' => 'sections#unblock'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

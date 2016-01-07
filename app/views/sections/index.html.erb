@@ -10,12 +10,11 @@
   </thead>
 
   <tbody>
-    <% @sections.each do |section| %>
-    <% next if section.blocking %>
+    <% @sections.where(blocking: false).each do |section| %>
       <tr>
         <td><%= section.name %></td>
         <td><%= link_to 'Show', section %></td>
-        <td><%= link_to 'Destroy', section, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Block', "/block/#{section.id}", :method => 'block' %></td>
       </tr>
     <% end %>
   </tbody>
@@ -33,11 +32,11 @@
   </thead>
 
   <tbody>
-  <% @sections.each do |section| %>
-      <% next unless section.blocking %>
+  <% @sections.where(blocking: true).each do |section| %>
       <tr>
         <td><%= section.name %></td>
         <td><%= link_to 'Show', section %></td>
+        <td><%= link_to 'Unblock', "/unblock/#{section.id}", :method => 'unblock' %></td>
         <td><%= link_to 'Destroy', section, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
   <% end %>
