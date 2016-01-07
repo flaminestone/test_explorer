@@ -5,17 +5,16 @@
 <table>
   <thead>
     <tr>
-      <th>Name</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @sections.each do |section| %>
+    <% @sections.where(blocking: false).each do |section| %>
       <tr>
         <td><%= section.name %></td>
         <td><%= link_to 'Show', section %></td>
-        <td><%= link_to 'Destroy', section, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Block', "/block/#{section.id}", :method => 'block' %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,3 +23,22 @@
 <br>
 
 <%= link_to 'New Section', new_section_path %>
+<p>-------------------------------------------------------------------------------------------------------------------</p>
+<table>
+  <thead>
+  <tr>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @sections.where(blocking: true).each do |section| %>
+      <tr>
+        <td><%= section.name %></td>
+        <td><%= link_to 'Show', section %></td>
+        <td><%= link_to 'Unblock', "/unblock/#{section.id}", :method => 'unblock' %></td>
+        <td><%= link_to 'Destroy', section, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

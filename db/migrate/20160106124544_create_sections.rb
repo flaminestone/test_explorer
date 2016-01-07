@@ -2,6 +2,7 @@ class CreateSections < ActiveRecord::Migration
   def change
     create_table :sections do |t|
       t.string :name
+      t.boolean :blocking, default: false
 
       t.timestamps null: false
     end
