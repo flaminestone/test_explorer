@@ -14,6 +14,7 @@ class VariantsController < ApplicationController
 
   # GET /variants/new
   def new
+    @question = get_question
     @variant = Variant.new
   end
 
@@ -71,4 +72,8 @@ class VariantsController < ApplicationController
     def variant_params
       params.require(:variant).permit(:name, :answer)
     end
+
+  def get_question
+    Question.find(params.require(:question_id))
+  end
 end
