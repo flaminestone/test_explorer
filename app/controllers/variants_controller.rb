@@ -20,6 +20,7 @@ class VariantsController < ApplicationController
 
   # GET /variants/1/edit
   def edit
+    @question = get_question
   end
 
   # POST /variants
@@ -29,7 +30,8 @@ class VariantsController < ApplicationController
 
     respond_to do |format|
       if @variant.save
-        format.html { redirect_to @variant, notice: 'Variant was successfully created.' }
+        get_question.variants << @variant
+        format.html { redirect_to  question_variant_path(get_question, @variant), notice: 'Variant was successfully created.' }
         format.json { render :show, status: :created, location: @variant }
       else
         format.html { render :new }
@@ -43,7 +45,7 @@ class VariantsController < ApplicationController
   def update
     respond_to do |format|
       if @variant.update(variant_params)
-        format.html { redirect_to @variant, notice: 'Variant was successfully updated.' }
+        format.html { redirect_to question_variant_path(get_question, @variant), notice: 'Variant was successfully updated.' }
         format.json { render :show, status: :ok, location: @variant }
       else
         format.html { render :edit }
@@ -57,7 +59,7 @@ class VariantsController < ApplicationController
   def destroy
     @variant.destroy
     respond_to do |format|
-      format.html { redirect_to variants_url, notice: 'Variant was successfully destroyed.' }
+      format.html { redirect_to question_variant_path(get_question, @variant), notice: 'Variant was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -70,10 +72,10 @@ class VariantsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def variant_params
-      params.require(:variant).permit(:name, :answer)
+      params.require(:variant).permit(:name, :answer, :avatar)
     end
 
-  def get_question
-    Question.find(params.require(:question_id))
-  end
+    def get_question
+      Question.find(params.require(:question_id))
+    end
 end
