@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Variants</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Answer</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @variants.each do |variant| %>
+      <tr>
+        <td><%= variant.name %></td>
+        <td><%= variant.answer %></td>
+        <td><%= link_to 'Show', controller: "variants", action: "show", id: variant %></td>
+        <td><%= link_to 'Edit', controller: "variants", action: "edit", id: variant %></td>
+        <td><%= link_to 'Destroy',{controller: "variants",action: "destroy", id: variant }, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Variant',  controller: "variants", action: "new" %>
