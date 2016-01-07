@@ -22,8 +22,9 @@ ActiveRecord::Schema.define(version: 20160107135153) do
 
   create_table "sections", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "blocking",   default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "tests", force: :cascade do |t|
