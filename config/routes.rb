@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :questions
+
+  resources :questions do
+    resources :variants
+  end
 
   resources :sections do
     resources :tests
