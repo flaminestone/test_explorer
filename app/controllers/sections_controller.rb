@@ -10,6 +10,8 @@ class SectionsController < ApplicationController
   # GET /sections/1
   # GET /sections/1.json
   def show
+    set_section
+    @tests = @section.tests
   end
 
   # GET /sections/new
@@ -56,7 +58,7 @@ class SectionsController < ApplicationController
   def destroy
     @section.destroy
     respond_to do |format|
-      format.html { redirect_to sections_url, notice: 'Section was successfully destroyed.' }
+      format.html { redirect_to root_url, notice: 'Section was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

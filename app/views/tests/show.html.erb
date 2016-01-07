@@ -6,4 +6,5 @@
 </p>
 
 <%= link_to 'Edit', controller: "tests", action: "edit", id: @test %> |
-<%= link_to 'Back', controller: "tests", action: "index" %>
+<%= link_to 'Back', controller: "sections", action: "show", id: @section %>
+<%= link_to 'Destroy', { controller: "tests",action: "destroy", id: @test }, method: :delete, data: { confirm: 'Are you sure?' } %>
