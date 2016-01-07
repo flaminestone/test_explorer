@@ -3,6 +3,7 @@ class CreateVariants < ActiveRecord::Migration
     create_table :variants do |t|
       t.string :name
       t.boolean :answer
+      t.integer :question_id
 
       t.timestamps null: false
     end
