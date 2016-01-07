@@ -10,6 +10,7 @@ class TestsController < ApplicationController
   # GET /tests/1
   # GET /tests/1.json
   def show
+    @section = get_section
   end
 
   # GET /tests/new
