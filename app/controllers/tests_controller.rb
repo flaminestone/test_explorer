@@ -19,12 +19,14 @@ class TestsController < ApplicationController
   def new
     @test = Test.new
     @section = get_section
+    @question = Question.new
   end
 
   # GET /tests/1/edit
   def edit
     @section = get_section
     @question = Question.new
+    @questions = @test.questions
   end
 
   # POST /tests
@@ -49,7 +51,7 @@ class TestsController < ApplicationController
   def update
     respond_to do |format|
       if @test.update(test_params)
-        format.html { redirect_to section_test_path(get_section, @test), notice: 'Test was successfully updated.' }
+        format.html { redirect_to edit_section_test_path(get_section, @test), notice: 'Test was successfully updated.' }
         format.json { render :show, status: :ok, location: @test }
       else
         format.html { render :edit }

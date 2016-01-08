@@ -2,3 +2,22 @@
 <h1>Editing Test</h1>
 
 <%= render 'form' %>
+
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @questions.each do |question| %>
+      <tr>
+        <td><%= question.name %></td>
+        <td><%= link_to 'Edit', edit_question_path(question) %></td>
+        <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
