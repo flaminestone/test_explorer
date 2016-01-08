@@ -5,21 +5,15 @@
   <%= @test.name %> |<%= link_to 'Edit', controller: "tests", action: "edit", id: @test %>
 </h1>
 
-<table>
-
-  <tbody>
-  <% @questions.each do |question| %>
-      <tr>
-        <td>
-          <%= question.name %>
-          <% question.variants.each do |current_variant| %>
-              <div>
-                <p><%= current_variant.name %></p>
-                <p><%= image_tag current_variant.avatar.url(:medium)  %></p>
-              </div>
-          <% end %>
-        </td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
+<% @questions.each do |question| %>
+    <div style="border: 4px double black;">
+      <p><%= question.name %></p>
+      <% question.variants.each do |current_variant| %>
+            <span><%= current_variant.name %>
+              <%= image_tag current_variant.avatar.url(:medium) %></span>
+      <% end %>
+      <br/>
+      <br/>
+      <br/>
+    </div>
+<% end %>
