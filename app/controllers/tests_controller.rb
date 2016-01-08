@@ -10,7 +10,9 @@ class TestsController < ApplicationController
   # GET /tests/1
   # GET /tests/1.json
   def show
+    set_test
     @section = get_section
+    @questions = @test.questions
   end
 
   # GET /tests/new
@@ -22,6 +24,7 @@ class TestsController < ApplicationController
   # GET /tests/1/edit
   def edit
     @section = get_section
+    @question = Question.new
   end
 
   # POST /tests
