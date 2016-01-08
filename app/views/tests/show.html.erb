@@ -18,7 +18,7 @@
       <tr>
         <td><%= question.name %>
 
-            <%= question.variants.each do |current_variant| %>
+            <% question.variants.each do |current_variant| %>
               <div>
                 <p><%= current_variant.name %></p>
                 <p><%= image_tag current_variant.avatar.url %></p>

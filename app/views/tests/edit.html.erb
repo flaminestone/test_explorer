@@ -1,4 +1,4 @@
-<%= link_to 'Back',  controller: "tests", action: "index" %>
+<%= link_to 'Back', controller: "tests", action: "index" %>
 <h1>Editing Test</h1>
 
 <%= render 'form' %>
@@ -15,8 +15,26 @@
   <% @questions.each do |question| %>
       <tr>
         <td><%= question.name %></td>
-        <td><%= link_to 'Edit', edit_question_path(question) %></td>
-        <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit name', edit_question_path(question) %></td>
+        <td><%= link_to 'Destroy', question, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        <td>
+          <%= form_for [question, @variant] do |f| %>
+              <div>
+                <%= f.text_field :name %>
+                <%= f.check_box :answer %>
+                <%= f.file_field :avatar %>
+                <%= f.submit %>
+          <% end %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <% question.variants.each do |current_variant| %>
+            <td><%= current_variant.name %></td>
+            <td><%= image_tag current_variant.avatar.url %></td>
+          <% end %>
+        </td>
       </tr>
   <% end %>
   </tbody>

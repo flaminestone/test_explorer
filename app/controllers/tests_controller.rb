@@ -27,6 +27,7 @@ class TestsController < ApplicationController
     @section = get_section
     @question = Question.new
     @questions = @test.questions
+    @variant = Variant.new
   end
 
   # POST /tests
