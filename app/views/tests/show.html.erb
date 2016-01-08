@@ -1,10 +1,7 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @test.name %>
-</p>
-
-<%= link_to 'Edit', controller: "tests", action: "edit", id: @test %> |
 <%= link_to 'Back', controller: "sections", action: "show", id: @section %>
+<h1>
+  <%= @test.name %> |<%= link_to 'Edit', controller: "tests", action: "edit", id: @test %>
+</h1>
+
 <%= link_to 'Destroy', { controller: "tests",action: "destroy", id: @test }, method: :delete, data: { confirm: 'Are you sure?' } %>
