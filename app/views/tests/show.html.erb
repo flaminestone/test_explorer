@@ -6,24 +6,18 @@
 </h1>
 
 <table>
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th colspan="3"></th>
-  </tr>
-  </thead>
 
   <tbody>
   <% @questions.each do |question| %>
       <tr>
-        <td><%= question.name %>
-
-            <% question.variants.each do |current_variant| %>
+        <td>
+          <%= question.name %>
+          <% question.variants.each do |current_variant| %>
               <div>
                 <p><%= current_variant.name %></p>
-                <p><%= image_tag current_variant.avatar.url %></p>
+                <p><%= image_tag current_variant.avatar.url(:medium)  %></p>
               </div>
-            <% end %>
+          <% end %>
         </td>
       </tr>
   <% end %>

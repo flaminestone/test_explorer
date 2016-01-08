@@ -1,4 +1,4 @@
-<%= link_to 'Back', controller: "tests", action: "index" %>
+<%= link_to 'Back', controller: "tests", action: "show", id: @test %>
 <h1>Editing Test</h1>
 
 <%= render 'form' %>
@@ -32,8 +32,10 @@
         <td>
           <% question.variants.each do |current_variant| %>
             <td><%= current_variant.name %></td>
-            <td><%= image_tag current_variant.avatar.url %></td>
-          <% end %>
+            <td><%= current_variant.answer %></td>
+            <td><%= image_tag current_variant.avatar.url(:thumb) %></td>
+            <td><%= link_to 'Destroy', "/questions/#{question.id}/variants/#{current_variant.id}", method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      <% end %>
         </td>
       </tr>
   <% end %>

@@ -59,7 +59,7 @@ class VariantsController < ApplicationController
   def destroy
     @variant.destroy
     respond_to do |format|
-      format.html { redirect_to question_variant_path(get_question, @variant), notice: 'Variant was successfully destroyed.' }
+      format.html { redirect_to edit_section_test_path(get_section, get_test), notice: 'Variant was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
