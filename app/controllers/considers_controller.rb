@@ -1,5 +1,12 @@
 class ConsidersController < ApplicationController
   def calculate_result
+    results = params.require(:questions)
+    results.keys.each do |current_question_id|
+      Question.find(current_question_id.to_i)
+
+    end
+
+
     puts "___________________¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶
 _____________¶¶¶¶___________________¶¶¶¶¶
 _________¶¶¶_____¶______¶___¶______¶_____8¶¶¶
@@ -14,6 +21,6 @@ _______¶¶____¶____________¶____________¶____¶¶¶
 _________¶¶¶¶___________________________8¶¶¶
 ______________¶¶¶¶¶_______________¶¶¶¶¶
 ___________________¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶"
-    render text: params
+    render text: results
   end
 end
