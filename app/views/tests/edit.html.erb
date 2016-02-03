@@ -1,7 +1,43 @@
+<%= link_to 'Back', controller: "tests", action: "show", id: @test %>
 <h1>Editing Test</h1>
 
 <%= render 'form' %>
 
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
 
-<%= link_to 'Show',  controller: "tests", action: "show", id: @test %>
-<%= link_to 'Back',  controller: "tests", action: "index" %>
+  <tbody>
+  <% @questions.each do |question| %>
+      <tr>
+        <td><%= question.name %></td>
+        <td><%= link_to 'Edit name', edit_question_path(question) %></td>
+        <td><%= link_to 'Destroy', question, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        <td>
+          <%= form_for [question, @variant] do |f| %>
+              <div>
+                <%= f.text_field :name %>
+                <%= f.check_box :answer %>
+                <%= f.file_field :avatar %>
+                <%= f.submit %>
+          <% end %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <% question.variants.each do |current_variant| %>
+            <td><%= current_variant.name %></td>
+            <td><%= current_variant.answer %></td>
+            <td><%= image_tag current_variant.avatar.url(:thumb) %></td>
+            <td><%= link_to 'Destroy', "/questions/#{question.id}/variants/#{current_variant.id}", method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      <% end %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   root 'sections#index'
   post 'block/:id' => 'sections#block'
   post 'unblock/:id' => 'sections#unblock'
+  post '/consider' => 'considers#calculate_result'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
