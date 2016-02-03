@@ -1,1 +1,7 @@
-sudo apt-get install libmagick9-dev
+<% if flash[:notice] %>
+    <div id="notice"><%= flash[:notice] %></div>
+<% end %>
+и во вьюхе
+    <% if flash[:notice] %>
+        <div id="notice"><%= flash[:notice] %></div>
+    <% end %>
