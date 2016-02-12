@@ -41,8 +41,11 @@ class TestsController < ApplicationController
         format.html { redirect_to  section_test_path(get_section, @test), notice: 'Test was successfully created.' }
         format.json { render :show, status: :created, location: @test }
       else
-        format.html { render :new }
-        format.json { render json: @test.errors, status: :unprocessable_entity }
+
+        format.html {
+        flash[:notice] = 'Название теста не может быть пустым'
+        redirect_to  new_section_test_path(get_section)}
+        format.json { render json: @test.errors }
       end
     end
   end

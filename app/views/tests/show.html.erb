@@ -6,22 +6,21 @@
 </h1>
 
 
-
-<%= form_tag("/consider", method: "post") do %>
-
-    <% @questions.each do |question| %>
-        <div style="border: 4px double black;">
-          <p><%= question.name %></p>
-          <% question.variants.each do |current_variant| %>
+<% unless @questions.empty? %>
+    <%= form_tag("/consider", method: "post") do %>
+        <% @questions.each do |question| %>
+            <div style="border: 4px double black;">
+              <p><%= question.name %></p>
+              <% question.variants.each do |current_variant| %>
             <span><%= current_variant.name %>|<%= current_variant.id %>|
               <%= check_box_tag("[questions]#{question.id}[#{current_variant.id}]".to_sym) %>
               <%= image_tag current_variant.avatar.url(:medium) %></span>
-          <% end %>
-          <br/>
-          <br/>
-          <br/>
-        </div>
-
+              <% end %>
+              <br/>
+              <br/>
+              <br/>
+            </div>
+        <% end %>
+        <%= submit_tag("finish") %>
     <% end %>
-    <%= submit_tag("finish") %>
 <% end %>
