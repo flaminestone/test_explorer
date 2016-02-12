@@ -1,4 +1,5 @@
 class SectionsController < ApplicationController
+  before_filter :authenticate_user!, :except => [:show, :index]
   before_action :set_section, only: [:show, :edit, :update, :destroy, :block, :unblock]
 
   # GET /sections
