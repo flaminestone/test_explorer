@@ -1,5 +1,6 @@
 class VariantsController < ApplicationController
   before_action :set_variant, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
 
   # GET /variants
   # GET /variants.json

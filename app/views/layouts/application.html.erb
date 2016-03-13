@@ -7,7 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<% if user_signed_in? %>
+    <div class="user_name"><%= current_user.email %> <b class="caret"></b></div>
+    <%= link_to "<i class='fa fa-fw fa-power-off'></i> #{t("helpers.links.logout")}".html_safe, destroy_user_session_path, :method => :delete %>
+<% else%>
+    <%= link_to "Sign-In", new_user_session_path, :class => "dropdown-toggle", :data => {:toggle=>"dropdown"} %>
+<% end %>
 <%= yield %>
 
 </body>

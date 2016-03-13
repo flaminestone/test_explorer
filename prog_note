@@ -1,1 +1,3 @@
 sudo apt-get install libmagick9-dev
+
+bin/spring binstub --remove --all - если spring  трахает мозги

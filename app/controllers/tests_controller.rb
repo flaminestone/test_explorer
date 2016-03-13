@@ -1,4 +1,5 @@
 class TestsController < ApplicationController
+  before_filter :authenticate_user!, :except => [:show, :index]
   before_action :set_test, only: [:show, :edit, :update, :destroy]
 
   # GET /tests
