@@ -1,3 +1,13 @@
 // Place all the styles related to the Sections controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.section_item{
+  height: 3em;
+  margin-top: 0.5em;
+  background-color: #fff;
+  text-align: center;
+  font-size: large;
+  color: #000000;
+  padding-top: 1em;
+  border: 1px solid #ddd;
+}
