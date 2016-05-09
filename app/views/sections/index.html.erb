@@ -1,4 +1,7 @@
 <div class="container">
+  <div id="classHeader">
+    <h3>Sections</h3>
+  </div>
   <% if user_signed_in? %>
       <div class="row">
         <div class="btn-group btn-group-justified" role="group">
@@ -11,7 +14,7 @@
   <div class="row">
     <div class="span11">
       <% @sections.where(blocking: false).each do |section| %>
-            <a id="section_item" href="<%= section_path(section) %>"> <%= section.name %></a>
+            <a id="block_element" href="<%= section_path(section) %>"> <%= section.name %></a>
       <% end %>
     </div>
   </div>

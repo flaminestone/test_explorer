@@ -14,7 +14,7 @@
  *= require_self
  */
 
-#section_item {
+#block_element {
     background-color: #fff;
     margin-top: 0.5em;
     color: #000000;
