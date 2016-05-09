@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+
+#section_item {
+    background-color: #fff;
+    margin-top: 0.5em;
+    color: #000000;
+    display: block;
+    height: 3em;
+    text-decoration: none;
+    text-align: center;
+    font-size: large;
+    border: 1px solid #b5b5b5;
+    padding-top: 1em;
+}
+

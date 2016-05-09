@@ -10,17 +10,8 @@
   <% end %>
   <div class="row">
     <div class="span11">
-
       <% @sections.where(blocking: false).each do |section| %>
-          <a href=<%= section_path(section) %>></a>
-          <div class="section_item">
-          <span>
-            <%= link_to section.name, section %>
-            <% if user_signed_in? %>
-            <%= link_to 'Block', "/block/#{section.id}", :method => 'block' %>
-            <% end %>
-          </span>
-          </div>
+            <a id="section_item" href="<%= section_path(section) %>"> <%= section.name %></a>
       <% end %>
     </div>
   </div>
@@ -47,3 +38,7 @@
       </div>
   <% end %>
   </div>
+
+  <% if user_signed_in? %>
+      <%= link_to 'Block', "/block/#{section.id}", :method => 'block' %>
+  <% end %>
