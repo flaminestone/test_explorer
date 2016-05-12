@@ -35,7 +35,6 @@ class TestsController < ApplicationController
   # POST /tests.json
   def create
     @test = Test.new(test_params)
-
     respond_to do |format|
       if @test.save
         get_section.tests << @test
@@ -80,7 +79,7 @@ class TestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def test_params
-      params.require(:test).permit(:name)
+      params.require(:test).permit(:name, :come_back, :time_out)
     end
 
     def get_section

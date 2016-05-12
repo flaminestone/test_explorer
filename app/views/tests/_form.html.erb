@@ -1,49 +1,48 @@
-<%= form_for [@section, @test] do |f| %>
-  <% if @test.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@test.errors.count, "error") %> prohibited this test from being saved:</h2>
-
-      <ul>
-      <% @test.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+<div class="container">
+  <%= form_for [@section, @test] do |f| %>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div id="classHeader">
+            <h3>Create Section</h3>
+          </div>
+          <%= f.text_field :name, class: "form-control", placeholder: "Test name" %>
+          <%= f.text_field :time_out, class: "form-control", placeholder: "Time out" %>
+          <div class="col-md-6 col-md-offset-5">
+            <%= f.check_box :come_back %>
+            <%= f.submit class: 'btn-success' %>
+          </div>
+        </div>
+      </div>
   <% end %>
+</div>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit 'Save' %>
-  </div>
-<% end %>
 
-<p>Add question</p>
+<% unless @variant.nil? %>
+    <p>Add question</p>
+    <%= form_for(@question) do |f| %>
+        <% if @question.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
 
-<%= form_for(@question) do |f| %>
-    <% if @question.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
+              <ul>
+                <% @question.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
 
-          <ul>
-            <% @question.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-          </ul>
+        <div class="field">
+          <%= f.label :name %><br>
+          <%= f.text_field :name %>
+        </div>
+        <%= f.hidden_field :test_id, :value => @test.id %>
+
+        <div class="actions">
+          <%= f.submit %>
         </div>
     <% end %>
-
-    <div class="field">
-      <%= f.label :name %><br>
-      <%= f.text_field :name %>
-    </div>
-    <%= f.hidden_field :test_id, :value => @test.id %>
-
-    <div class="actions">
-      <%= f.submit %>
-    </div>
 <% end %>
+
 
 
