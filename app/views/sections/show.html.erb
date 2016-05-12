@@ -7,16 +7,15 @@
           <div class="section_item">
             <div class="col-xs-9"><a id="block_element" href="<%= section_test_path(@section, test) %>"> <%= test.name %></a></div>
           </div>
-          <div class="col-xs-2"><a id="block_element" href="">&#9200;<%= test.time_out %> min </a></div>
-          <div class="col-xs-1"><a id="block_element" href="">
+          <div class="col-xs-2"><div id="block_element">&#9200;<%= test.time_out %> min </div></div>
+          <div class="col-xs-1"><div id="block_element">
             <% if test.come_back %>
                 &#9668;
             <% else %>
                 &#8855;
             <% end %>
-          </a>
           </div>
-
+          </div>
       <% end %>
       </div>
 </div>
