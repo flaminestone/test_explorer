@@ -16,7 +16,6 @@
 
 #block_element {
     background-color: #fff;
-    margin-top: 0.5em;
     color: #000000;
     display: block;
     height: 3em;
@@ -24,6 +23,11 @@
     text-align: center;
     font-size: large;
     border: 1px solid #b5b5b5;
-    padding-top: 1em;
+    line-height: 3em;
 }
-
+.time_icon {
+    display: block;
+    height: 3em;
+    padding: 3px;
+    vertical-align: middle;
+}

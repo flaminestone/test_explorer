@@ -1,6 +1,11 @@
 <div class="container">
   <div id="classHeader">
-    <h3>Sections</h3>
+    <% if @sections.empty? %>
+      <h3> Sections is not found</h3>
+    <% else %>
+        <h3>Sections</h3>
+  <% end %>
+
   </div>
   <% if user_signed_in? %>
       <div class="row">
@@ -12,36 +17,35 @@
       </div>
   <% end %>
   <div class="row">
-    <div class="span11">
-      <% @sections.where(blocking: false).each do |section| %>
-            <a id="block_element" href="<%= section_path(section) %>"> <%= section.name %></a>
+    <div class="col-md-12">
+      <% unless @sections.nil? %>
+          <% @sections.where(blocking: false).each do |section| %>
+              <a id="block_element" href="<%= section_path(section) %>"> <%= section.name %></a>
+          <% end %>
       <% end %>
     </div>
-  </div>
 
-  <% if user_signed_in? %>
-      <% unless @sections.where(blocking: true).empty? %>
-          <div class="alert alert-info" role="alert" style="text-align: center">
-            This sections is blocked. Users cant see it. You cat unblock or delete
+    <% if user_signed_in? %>
+        <% unless @sections.where(blocking: true).empty? %>
+            <div class="alert alert-info" role="alert" style="text-align: center">
+              This sections is blocked. Users cant see it. You cat unblock or delete
+            </div>
+        <% end %>
+        <div class="row">
+          <div class="col-xs-11">
+            <% @sections.where(blocking: true).each do |section| %>
+                <div class="section_item">
+                  <a href=<%= section_path(section) %>>
+                    <%= " #{section.name} [BLOCKED]" %>
+                    <%= link_to 'Unblock', "/unblock/#{section.id}", :method => 'unblock' %>
+                    <%= link_to 'Destroy', section, method: :delete, data: {confirm: 'Are you sure?'} %>
+                  </a>
+                </div>
+            <% end %>
           </div>
-      <% end %>
-      <div class="row">
-        <div class="span11">
-          <% @sections.where(blocking: true).each do |section| %>
-              <div class="section_item">
-                <a href=<%= section_path(section) %>>
-                  <%= " #{section.name} [BLOCKED]" %>
-                  <%= link_to 'Unblock', "/unblock/#{section.id}", :method => 'unblock' %>
-                  <%= link_to 'Destroy', section, method: :delete, data: {confirm: 'Are you sure?'} %>
-                </a>
-              </div>
-          <% end %>
         </div>
-      </div>
-      </div>
-  <% end %>
-  </div>
+        </div>
+    <% end %>
+    </div>
+</div>
 
-  <% if user_signed_in? %>
-      <%= link_to 'Block', "/block/#{section.id}", :method => 'block' %>
-  <% end %>
