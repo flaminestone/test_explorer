@@ -1,21 +1,15 @@
+<div class="container">
 <%= form_for(@section) do |f| %>
-  <% if @section.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@section.errors.count, "error") %> prohibited this section from being saved:</h2>
-
-      <ul>
-      <% @section.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div id="classHeader">
+            <h3>Create Section</h3>
+          </div>
+          <%= f.text_field :name, class: "form-control", placeholder: "Section name"%>
+          <div class="col-md-6 col-md-offset-5">
+          <%= f.submit class: 'btn-success' %>
+        </div>
+        </div>
+        </div>
 <% end %>
+</div>
