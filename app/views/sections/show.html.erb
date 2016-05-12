@@ -2,6 +2,17 @@
   <div id="classHeader">
     <h3>Tests</h3>
   </div>
+
+  <% if user_signed_in? %>
+      <div class="row">
+        <div class="btn-group btn-group-justified" role="group">
+          <div class="btn-group" role="group">
+            <%= button_to 'Create new test', new_section_test_path(@section), :class => 'btn btn-success' %>
+          </div>
+        </div>
+      </div>
+  <% end %>
+
   <div class="row">
       <% @tests.each do |test| %>
           <div class="section_item">

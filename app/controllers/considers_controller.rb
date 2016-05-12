@@ -1,6 +1,9 @@
 class ConsidersController < ApplicationController
   def calculate_result
-    render text: "Ничего не выбрано, а значит нет и результатов"; return unless params.has_key?(:questions)
+    unless params.has_key?(:questions)
+      render text: "Ничего не выбрано, а значит нет и результатов"
+      return
+    end
     general_result = 0
     results = params.require(:questions) # "id_question"=>{"answer_1" => "1", "answer_1" => "1", "answer_3" => "1"} ect
     results.keys.each do |current_question_id| # проходим по всем вопросам в тесте, на которые дали ответы
