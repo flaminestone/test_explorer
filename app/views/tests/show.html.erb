@@ -1,27 +1,67 @@
-<p id="notice"><%= notice %></p>
-<%= link_to 'Back', controller: "sections", action: "show", id: @section %>
-<%= link_to 'Destroy', {controller: "tests", action: "destroy", id: @test}, method: :delete, data: {confirm: 'Are you sure?'} %>
-<h1>
-  <%= @test.name %> |<%= link_to 'Edit', controller: "tests", action: "edit", id: @test %>
-</h1>
-
-
-
 <%= form_tag("/consider", method: "post") do %>
-
-    <% @questions.each do |question| %>
-        <div style="border: 4px double black;">
-          <p><%= question.name %></p>
-          <% question.variants.each do |current_variant| %>
-            <span><%= current_variant.name %>|<%= current_variant.id %>|
-              <%= check_box_tag("[questions]#{question.id}[#{current_variant.id}]".to_sym) %>
-              <%= image_tag current_variant.avatar.url(:medium) %></span>
-          <% end %>
-          <br/>
-          <br/>
-          <br/>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="col-md-12">
+          <p id="notice"><%= notice %></p>
+          <%= link_to 'Back', controller: "sections", action: "show", id: @section %>
+          <%= link_to 'Destroy', {controller: "tests", action: "destroy", id: @test}, method: :delete, data: {confirm: 'Are you sure?'} %>
+          <%= @test.name %>
+          <%= link_to 'Edit', controller: "tests", action: "edit", id: @test %>
         </div>
+      </div>
+      <div class="row-fluid">
+        <div class="col-md-10">
+          <div class="examplecarusel">
+            <div style="margin-top: 20px; text-align:center;">
+              <input type="button" class="btn btn-info prev-slide" value="Предыдущий">
+              <input type="button" class="btn btn-info next-slide" value="Следующий">
+              <p><%= submit_tag "finish", class: "btn btn-info" %></p>
+            </div>
+            <div id="myCarousel2" class="carousel slide" data-interval="0" data-ride="carousel">
+              <div class="carousel-inner">
+                <% first_selector = 'active' %>
+                <% @questions.each do |question| %>
 
-    <% end %>
-    <%= submit_tag("finish") %>
+                    <div class="<%= first_selector %> item">
+                      <p><%= question.name %> Select one of picture</p>
+                      <% question.variants.each do |current_variant| %>
+                          <div class="col-md-4">
+                            <div class="thumbnail">
+                              <div class="result-item" style="background: url(<%= current_variant.avatar.url %>) 100% 100% no-repeat;
+                                                              background-size: contain;
+                                                              background-position: 50% 50%;">
+                              </div>
+                              <div class="caption result-describe">
+                                <h3> <%= current_variant.name %></h3>
+                                <%= check_box_tag("[questions]#{question.id}[#{current_variant.id}]".to_sym) %>
+                              </div>
+                            </div>
+                          </div>
+                      <% end %>
+                    </div>
+                      <% first_selector = '' %>
+                  <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+        </div>
+      </div>
+
 <% end %>
+</div>
+<script>
+  $(document).ready(function () {
+    // Инициализирует карусель
+    $("#myCarousel2").carousel('pause');
+    // Осуществляет переход на предыдущий слайд
+    $(".prev-slide").click(function () {
+      $("#myCarousel2").carousel('prev');
+    });
+    // Осуществляет переход на следующий слайд
+    $(".next-slide").click(function () {
+      $("#myCarousel2").carousel('next');
+    });
+  });
+</script>
