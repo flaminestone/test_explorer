@@ -1,28 +1,26 @@
 <%= form_tag("/consider", method: "post") do %>
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="col-md-6">
-          <h1>
+        <div class="row-fluid">
+          <div class="finish-button">
 
-          </h1>
+            <button type="submit" name="commit" value="finish" class="btn btn-default finish-button">
+              <span class="glyphicon glyphicon-saved next-question" aria-hidden="true"></span>
+            </button>
+          </div>
 
-        </div>
-        <div class="col-md-6">
-          <div style="margin-top: 20px; text-align:center;">
-            <input type="button" class="btn btn-info prev-slide" value="Предыдущий">
-            <input type="button" class="btn btn-info next-slide" value="Следующий">
-            <p><%= submit_tag "finish", class: "btn btn-info" %></p>
+          <div class="question-button">
+            <button type="button" class="btn btn-default prev-slide" aria-label="Left Align">
+              <span class="glyphicon glyphicon-arrow-left next-question" aria-hidden="true"></span>
+            </button>
+
+            <button type="button" class="btn btn-default next-slide" aria-label="Left Align">
+              <span class="glyphicon glyphicon-arrow-right next-question" aria-hidden="true"></span>
+            </button>
           </div>
         </div>
-      </div>
 
-      <div class="row-fluid">
-        <div class="row-fluid">
-
-
-        </div>
-
-        <div class="col-md-10">
+        <div class="col-md-12">
           <div class="examplecarusel">
 
             <div id="myCarousel2" class="carousel slide" data-interval="0" data-ride="carousel">
@@ -55,8 +53,6 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-2">
         </div>
       </div>
 <% end %>
