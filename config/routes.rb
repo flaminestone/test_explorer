@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'students/new'
+
   devise_for :users
   resources :questions do
     resources :variants

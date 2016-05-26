@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160212103112) do
+ActiveRecord::Schema.define(version: 20160526233024) do
 
   create_table "questions", force: :cascade do |t|
     t.string   "name"
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(version: 20160212103112) do
     t.boolean  "blocking",   default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.string   "name"
+    t.string   "group"
+    t.string   "section_result_name"
+    t.string   "test_result_name"
+    t.string   "result"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
   create_table "tests", force: :cascade do |t|
