@@ -31,18 +31,19 @@
                     <div class="<%= first_selector %> item">
                       <p>
                       <h4>Question <%= i + 1 %> (<%= @questions.size %>): <b><%= question.name %></b></h4>
-
                       </p>
                       <% question.variants.each do |current_variant| %>
                           <div class="col-md-4">
-                            <div class="thumbnail">
+                            <div class="thumbnail" id="<%= "[questions]#{question.id}[#{current_variant.id}]".to_sym %>">
+                              <%= check_box_tag("[questions]#{question.id}[#{current_variant.id}]".to_sym, '0', false, :class=>'checkbox hidden')%>
+
                               <div class="result-item" style="background: url(<%= current_variant.avatar.url %>) 100% 100% no-repeat;
                                   background-size: contain;
-                                  background-position: 50% 50%;">
+                                  background-position: 50% 50%; cursor:pointer;">
+
                               </div>
                               <div class="caption result-describe">
-                                <h3> <%= current_variant.name %></h3>
-                                <%= check_box_tag("[questions]#{question.id}[#{current_variant.id}]".to_sym) %>
+                                <h3><%= current_variant.name %></h3>
                               </div>
                             </div>
                           </div>
@@ -69,5 +70,14 @@
     $(".next-slide").click(function () {
       $("#myCarousel2").carousel('next');
     });
+  });
+
+  $(".thumbnail").on('click', function() {
+    if($(this).children('.checkbox').is(":checked")){
+      $(this).find('input[type=checkbox]').prop('checked', false);
+      this.style.backgroundColor="rgb(255, 255, 255)"}else{
+      $(this).find('input[type=checkbox]').prop('checked', true);
+      this.style.backgroundColor="rgb(204, 255, 204)"
+    }
   });
 </script>
