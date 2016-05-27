@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :questions do
     resources :variants
   end
-
+  resource :students
   resources :sections do
     resources :tests
   end
@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   post 'block/:id' => 'sections#block'
   post 'unblock/:id' => 'sections#unblock'
   post '/consider' => 'considers#calculate_result'
+  post '/students/new' => 'students#new'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

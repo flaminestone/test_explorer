@@ -1,2 +1,10 @@
-<h1>Students#new</h1>
-<p>Find me in app/views/students/new.html.erb</p>
+<div class="container">
+  <%= form_for(@student, :html => {:class => "form-signin"}) do |f| %>
+      <h2 class="form-signin-heading">Please sign up</h2>
+      <%= f.text_field :name, autofocus: true, :class => 'form-control', :placeholder => "Student name", :required => "" %>
+      <%= f.text_field :group, autofocus: true, :class => 'form-control', :placeholder => "Group", :required => "" %>
+      <%= f.hidden_field :section_result_name, :value => params[:section] %>
+      <%= f.hidden_field :test_result_name, :value => params[:test] %>
+      <%= f.submit "Sign up", :class => "btn btn-lg btn-success btn-block" %>
+  <% end %>
+</div>
