@@ -8,6 +8,7 @@ class StudentsController < ApplicationController
     respond_to do |format|
       if @student.save
         format.html { redirect_to section_test_path(students_params[:section_result_name], students_params[:test_result_name])}
+        session[:current_user_id] = @student.id
       else
         format.html { render :new }
         format.json { render json: @student.errors, status: :unprocessable_entity }

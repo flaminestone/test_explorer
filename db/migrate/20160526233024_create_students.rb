@@ -6,7 +6,6 @@ class CreateStudents < ActiveRecord::Migration
       t.string :section_result_name
       t.string :test_result_name
       t.string :result
-
       t.timestamps null: false
     end
   end

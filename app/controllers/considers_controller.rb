@@ -33,6 +33,12 @@ _______¶¶____¶____________¶____________¶____¶¶¶
 _________¶¶¶¶___________________________8¶¶¶
 ______________¶¶¶¶¶_______________¶¶¶¶¶
 ___________________¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶"
+    if session[:current_user_id].nil?
+      render text: "Сессия потеряна. Вернитесь назад"
+      return
+    end
+    Student.all.find(session[:current_user_id]).update(:result => general_result.to_s)
+    session[:current_user_id] = nil
     render text: "#{general_result} из #{ possible_result }. It is a #{(100.0 / possible_result) * general_result}"
   end
 
