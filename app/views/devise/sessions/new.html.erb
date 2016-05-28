@@ -1,7 +1,7 @@
 <div class="container">
 
     <%= form_for(resource, as: resource_name, :html => {:class => "form-signin"}, url: session_path(resource_name)) do |f| %>
-      <h2 class="form-signin-heading">Please sign in</h2>
+      <h3 class="form-signin-heading">Please sign in</h3>
         <%= f.email_field :email, autofocus: true, :class => 'form-control', :type => "email", :placeholder => "Email address", :required => "" %>
 
         <%= f.password_field :password, autocomplete: "off", autofocus: true, :class => 'form-control', :type => "password", :placeholder => "Password", :required => "" %>
