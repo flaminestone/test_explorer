@@ -20,7 +20,7 @@
     <div class="col-md-12">
       <% unless @sections.nil? %>
           <% @sections.where(blocking: false).each do |section| %>
-              <a id="block_element" href="<%= section_path(section) %>"> <%= section.name %></a>
+              <a id="block_element" href="<%= section_path(section) %>"><span class="section-data"><%= section.name %><span class="badge count-of-tests"><%= section.tests.count %></span></span></a>
           <% end %>
       <% end %>
     </div>
