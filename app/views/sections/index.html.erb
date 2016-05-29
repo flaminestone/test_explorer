@@ -16,26 +16,23 @@
       </div>
   <% end %>
   <div class="row">
+    <% unless @sections.nil? %>
+        <% @sections.where(blocking: false).each do |section| %>
+            <div class=<%= user_signed_in? ? "col-xs-11" : "col-xs-12" %>>
 
-      <% unless @sections.nil? %>
-          <% @sections.where(blocking: false).each do |section| %>
-            <div class=<%= user_signed_in? ? "col-md-11" : "col-md-12" %>>
-
-            <a id="block_element" href="<%= section_path(section) %>">
+              <a id="block_element" href="<%= section_path(section) %>">
                 <span class="section-data"><%= section.name %>
                   <span class="badge count-of-tests"><%= section.tests.count %></span>
                 </span>
               </a>
             </div>
-            <div class="col-md-1 <%= "hidden" unless user_signed_in? %>">
+            <div class="col-xs-1 <%= "hidden" unless user_signed_in? %>">
               <a id="block_element" data-method="block" rel="nofollow" href=<%= "/block/#{section.id}" %>
-                <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
               </a>
             </div>
-
-
-  <% end %>
-      <% end %>
+        <% end %>
+    <% end %>
 
   </div>
   <% if user_signed_in? %>
@@ -45,15 +42,15 @@
 
       <% end %>
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-xs-12">
           <% @sections.where(blocking: true).each do |section| %>
               <div class="section_item">
                 <div id="block_element" href="<%= section_path(section) %>">
-                <span class="section-data"><%= section.name %> [BLOCKED]</span>
-                    <%= link_to '<span class="glyphicon glyphicon-share" aria-hidden="true"></span>'.html_safe, "/unblock/#{section.id}", :method => 'unblock', class: "btn-default unblock-and-delete-buttons" %>
-                    <%= link_to '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>'.html_safe, section, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn-default unblock-and-delete-buttons"  %>
+                  <span class="section-data"><%= section.name %> [BLOCKED]</span>
+                  <%= link_to '<span class="glyphicon glyphicon-share" aria-hidden="true"></span>'.html_safe, "/unblock/#{section.id}", :method => 'unblock', class: "btn-default unblock-and-delete-buttons" %>
+                  <%= link_to '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>'.html_safe, section, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn-default unblock-and-delete-buttons" %>
                   <span class="badge count-of-tests"><%= section.tests.count %></span>
-                </span>
+                  </span>
                 </div>
               </div>
           <% end %>
