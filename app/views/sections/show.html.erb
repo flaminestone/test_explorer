@@ -37,7 +37,7 @@
             <% end %>
           </div>
         </div>
-        <div class="col-xs-1"><a id="block_element" onclick="$('.delete-link').click()">
+        <div class="col-xs-1 <%= "hidden" unless user_signed_in? %>"><a id="block_element" onclick="$('.delete-link').click()">
           <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
           <%= link_to 'delete-link', "#{section_path(@section)}/tests/#{test.id}", method: :delete, data: {confirm: 'Are you sure?'}, class: "delete-link hidden" %>
         </a>
