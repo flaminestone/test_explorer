@@ -1,48 +1,57 @@
 <div class="container">
-  <%= form_for [@section, @test] do |f| %>
-      <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-          <div id="classHeader">
-            <h3>Create Section</h3>
-          </div>
-          <%= f.text_field :name, class: "form-control", placeholder: "Test name" %>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_for([@section, @test], :html => {:class => "form-horizontal"}) do |f| %>
+          <h3 class="form-signin-heading">Create Test</h3>
+          <%= f.text_field :name, class: "form-control", placeholder: "Test name", autofocus: true %>
           <%= f.text_field :time_out, class: "form-control", placeholder: "Time out" %>
-          <div class="col-md-6 col-md-offset-5">
-            <%= f.check_box :come_back %>
-            <%= f.submit class: 'btn-success' %>
           </div>
-        </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 comeback">
+     <%= f.check_box :come_back, :class=>"comeback" %>
+      <label>Come back opportunity</label>
+   </div>
+      <div class="col-md-6 col-md-offset-3">
+
+      <%= f.submit class: 'btn-success', :class => "btn btn-lg btn-success btn-block" %>
       </div>
-  <% end %>
+  </div>
 </div>
 
-
-<% unless @variant.nil? %>
-    <p>Add question</p>
-    <%= form_for(@question) do |f| %>
-        <% if @question.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
-
-              <ul>
-                <% @question.errors.full_messages.each do |message| %>
-                    <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
-        <% end %>
-
-        <div class="field">
-          <%= f.label :name %><br>
-          <%= f.text_field :name %>
-        </div>
-        <%= f.hidden_field :test_id, :value => @test.id %>
-
-        <div class="actions">
-          <%= f.submit %>
-        </div>
-    <% end %>
 <% end %>
+
+      <% unless @variant.nil? %>
+          <p>Add question</p>
+          <%= form_for(@question) do |f| %>
+              <% if @question.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
+
+                    <ul>
+                      <% @question.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+              <% end %>
+
+              <div class="field">
+                <%= f.label :name %><br>
+                <%= f.text_field :name %>
+              </div>
+              <%= f.hidden_field :test_id, :value => @test.id %>
+
+              <div class="actions">
+                <%= f.submit %>
+              </div>
+          <% end %>
+      <% end %>
+
+
+
 
 
 
