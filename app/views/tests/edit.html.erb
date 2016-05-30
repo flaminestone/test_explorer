@@ -11,52 +11,57 @@
               <%= f.text_field :time_out, class: "form-control edit-test-control", placeholder: "Time out" %>
             </div>
             <div class="col-xs-1">
-              <div class="edit-test-control-checkbox">
-                <%= f.check_box :come_back, :class => 'checkbox' %>
+              <div class="checkbox">
+                <div class="edit-test-control">
+                  <label>
+                    <%= f.check_box :come_back, :class => 'checkbox' %><b>Comeback</b>
+                  </label>
+                </div>
               </div>
             </div>
-            <div class="col-xs-2">
-              <%= f.submit class: 'btn-success', :class => "btn btn-success btn-block", :value => 'Update' %>
+            <div class="col-xs-3">
+              <div class="edit-test-controls-update">
+                <%= f.submit class: 'btn-success', :class => "btn btn-success btn-block", :value => 'Update' %>
+              </div>
             </div>
         <% end %>
       </div>
     </div>
   </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-6 ">
+</div>
+<div class="row">
+  <div class="col-xs-6 ">
     <%= render "questions/form" %>
-  </div>
-  </div>
-
-  <div class="row">
-      <% @questions.each do |question| %>
-          <tr>
-            <td><%= question.name %></td>
-            <td><%= link_to 'Edit name', edit_question_path(question) %></td>
-            <td><%= link_to 'Destroy', question, method: :delete, data: {confirm: 'Are you sure?'} %></td>
-            <td>
-              <%= form_for [question, @variant] do |f| %>
-                  <div>
-                    <%= f.text_field :name %>
-                    <%= f.check_box :answer %>
-                    <%= f.file_field :avatar %>
-                    <%= f.submit %>
-              <% end %>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <% question.variants.each do |current_variant| %>
-                <td><%= current_variant.name %></td>
-                <td><%= current_variant.answer %></td>
-                <td><%= image_tag current_variant.avatar.url(:thumb) %></td>
-                <td><%= link_to 'Destroy', "/questions/#{question.id}/variants/#{current_variant.id}", method: :delete, data: {confirm: 'Are you sure?'} %></td>
-            <% end %>
-            </td>
-          </tr>
-      <% end %>
   </div>
 </div>
 
+<div class="row">
+  <% @questions.each do |question| %>
+      <tr>
+        <td><%= question.name %></td>
+        <td><%= link_to 'Edit name', edit_question_path(question) %></td>
+        <td><%= link_to 'Destroy', question, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        <td>
+          <%= form_for [question, @variant] do |f| %>
+              <div>
+                <%= f.text_field :name %>
+                <%= f.check_box :answer %>
+                <%= f.file_field :avatar %>
+                <%= f.submit %>
+          <% end %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <% question.variants.each do |current_variant| %>
+            <td><%= current_variant.name %></td>
+            <td><%= current_variant.answer %></td>
+            <td><%= image_tag current_variant.avatar.url(:thumb) %></td>
+            <td><%= link_to 'Destroy', "/questions/#{question.id}/variants/#{current_variant.id}", method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        <% end %>
+        </td>
+      </tr>
+  <% end %>
+</div>
+</div>
