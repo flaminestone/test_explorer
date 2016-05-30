@@ -10,6 +10,10 @@ Rails.application.routes.draw do
   resources :sections do
     resources :tests
   end
+
+  resources :tests do
+    resources :questions
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -17,6 +21,7 @@ Rails.application.routes.draw do
   root 'sections#index'
   post '/sections/new' => 'sections#new'
   post '/sections/:id/tests/new' => 'tests#new'
+  post '/sections/:id/tests/:id/edit' => 'tests#edit'
   post 'block/:id' => 'sections#block'
   post 'unblock/:id' => 'sections#unblock'
   post '/consider' => 'considers#calculate_result'
