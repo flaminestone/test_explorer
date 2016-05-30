@@ -1,21 +1,27 @@
 <div class="container">
   <div class="row">
-    <%= form_for([@section, @test], :html => {:class => "form-horizontal"}) do |f| %>
-        <div class="col-xs-6 ">
-          <%= f.text_field :name, class: "form-control edit-test-control", placeholder: "Test name", autofocus: true %>
-        </div>
-        <div class="col-xs-2">
-          <%= f.text_field :time_out, class: "form-control edit-test-control", placeholder: "Time out" %>
-        </div>
-        <div class="col-xs-1">
-          <div class="edit-test-control">
-            <%= f.check_box :come_back, :class => 'checkbox' %>
-          </div>
-        </div>
-        <div class="col-xs-2">
-          <%= f.submit class: 'btn-success', :class => "btn btn-success btn-block" %>
-        </div>
-    <% end %>
+    <div class="panel panel-default">
+      <div class="panel-heading">Edit current test</div>
+      <div class="panel-body">
+        <%= form_for([@section, @test], :html => {:class => "form-horizontal"}) do |f| %>
+            <div class="col-xs-6 ">
+              <%= f.text_field :name, class: "form-control edit-test-control", placeholder: "Test name", autofocus: true %>
+            </div>
+            <div class="col-xs-2">
+              <%= f.text_field :time_out, class: "form-control edit-test-control", placeholder: "Time out" %>
+            </div>
+            <div class="col-xs-1">
+              <div class="edit-test-control-checkbox">
+                <%= f.check_box :come_back, :class => 'checkbox' %>
+              </div>
+            </div>
+            <div class="col-xs-2">
+              <%= f.submit class: 'btn-success', :class => "btn btn-success btn-block", :value => 'Update' %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
   </div>
   <div class="row">
     <div class="col-xs-6 ">
