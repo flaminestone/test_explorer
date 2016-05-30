@@ -21,20 +21,23 @@
             </div>
             <div class="col-xs-3">
               <div class="edit-test-controls-update">
-                <%= f.submit class: 'btn-success', :class => "btn btn-success btn-block", :value => 'Update' %>
+                <%= f.submit :class => "btn btn-success btn-block", :value => 'Update' %>
               </div>
             </div>
         <% end %>
       </div>
     </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-xs-6 ">
-    <%= render "questions/form" %>
+
+  <div class="row">
+    <div class="panel panel-default">
+      <div class="panel-heading">Add new qurstion</div>
+      <div class="panel-body">
+        <%= render "questions/form" %>
+      </div>
+    </div>
   </div>
 </div>
-
 <div class="row">
   <% @questions.each do |question| %>
       <tr>
