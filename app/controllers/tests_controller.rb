@@ -27,7 +27,7 @@ class TestsController < ApplicationController
   def edit
     @section = get_section
     @question = Question.new
-    @questions = @test.questions
+    @questions = @test.questions.order("updated_at DESC")
     @variant = Variant.new
   end
 
