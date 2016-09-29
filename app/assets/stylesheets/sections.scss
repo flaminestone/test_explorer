@@ -31,12 +31,9 @@
   background-image: none;
   border: 1px solid transparent;
   border-radius: 4px;
+  color: rgb(255,255,255);
 }
 
-.unblock-and-delete-buttons:hover,
-.unblock-and-delete-buttons:focus {
-  background-color: #e0e0e0;
-}
 .element-is-blocked-alert{
   padding-left: 0px;
   padding-right: 0px;
@@ -45,3 +42,6 @@
 .delete-button{
   background-color: rgba(255, 17, 0, 0.35);
 }
+a.btn-danger:visited { color: #fff; }
+
+a.btn-primary:visited { color: #fff; }

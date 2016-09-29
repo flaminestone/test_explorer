@@ -2,7 +2,6 @@
   <div id="classHeader">
     <h3>Tests</h3>
   </div>
-
   <% if user_signed_in? %>
       <div class="row">
         <div class="btn-group btn-group-justified" role="group">
@@ -12,11 +11,10 @@
         </div>
       </div>
   <% end %>
-
   <div class="row">
     <% @tests.each do |test| %>
         <div class="section_item">
-          <div class=<%= user_signed_in? ? "col-xs-8" : "col-xs-9" %>>
+          <div class=<%= user_signed_in? ? "col-xs-7" : "col-xs-9" %>>
             <a id="block_element" href="<%= students_new_path(:section => @section.id, :test => test.id) %>"><span class="section-data"><%= test.name %>
               <span class="badge count-of-tests"><%= test.questions.count %></span></span></a></div>
         </div>
@@ -37,8 +35,12 @@
             <% end %>
           </div>
         </div>
-        <div class="col-xs-1 <%= "hidden" unless user_signed_in? %>"><a id="block_element" onclick="$('.delete-link').click()">
-          <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+        <div class="col-xs-1 <%= "hidden" unless user_signed_in? %>"><a id="block_element" href="<%= edit_section_test_path(@section, test)%>">
+          <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+        </a>
+        </div>
+        <div class="col-xs-1 <%= "hidden" unless user_signed_in? %>"  style="cursor: pointer;"><a id="block_element" onclick="$('.delete-link').click()">
+          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
           <%= link_to 'delete-link', "#{section_path(@section)}/tests/#{test.id}", method: :delete, data: {confirm: 'Are you sure?'}, class: "delete-link hidden" %>
         </a>
         </div>

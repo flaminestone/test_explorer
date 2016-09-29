@@ -27,7 +27,7 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
     respond_to do |format|
       if @question.save
-        Test.find(params[:question][:test_id]).questions << @question
+        Test.find(params[:test_id]).questions << @question
         format.html { redirect_to path_to_edit, notice: 'Question was successfully created.' }
         format.json { render :show, status: :created, location: @question }
       else

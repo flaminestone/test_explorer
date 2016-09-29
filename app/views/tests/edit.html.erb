@@ -1,43 +1,141 @@
-<%= link_to 'Back', controller: "tests", action: "show", id: @test %>
-<h1>Editing Test</h1>
+<div class="container">
+  <div class="row">
+    <div class="panel panel-default">
+      <div class="panel-heading">Edit current test</div>
+      <div class="panel-body">
+        <%= form_for([@section, @test], :html => {:class => "form-horizontal"}) do |f| %>
+            <div class="col-xs-6 ">
+              <%= f.text_field :name, class: "form-control edit-test-control", placeholder: "Test name", autofocus: true %>
+            </div>
+            <div class="col-xs-2">
+              <div class="input-group edit-test-control">
+                <%= f.text_field :time_out, class: "form-control", placeholder: "Time out" %>
+                <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon glyphicon-time" aria-hidden="true"></span></span>
+              </div>
+            </div>
+            <div class="col-xs-1">
+              <div class="checkbox">
+                <div class="edit-test-control">
+                  <label>
+                    <%= f.check_box :come_back, :class => 'checkbox' %><b>Comeback</b>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-3">
+              <div class="edit-test-controls-update">
+                <%= f.submit :class => "btn btn-success btn-block", :value => 'Update' %>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="panel panel-default">
+      <div class="panel-heading">Add new qurstion</div>
+      <div class="panel-body">
+        <%= render "questions/form" %>
+      </div>
+    </div>
+  </div>
 
-<%= render 'form' %>
+  <div class="row">
+    <div class="panel panel-default">
+      <div class="panel-heading">All questions</div>
+      <div class="panel-body">
+        <% @questions.each do |question| %>
+            <div class="row">
+              <div class="col-xs-12">
+                <h4>
+                  <b><%= question.name %></b>
+                  <a class="btn-primary unblock-and-delete-buttons" data-toggle="modal" data-target="#myModal<%= question.id %>">
+                  <span class="glyphicon glyphicon-plus-sign" aria-hidden="true">
+                  </span>
+                  </a>
+                  <!-- Modal -->
+                  <div class="modal fade" id="myModal<%= question.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title" id="myModalLabel">Add new variant</h4>
+                        </div>
+                        <div class="modal-body">
+                          <%= form_for [question, @variant] do |f| %>
+                              <div class="form-group">
+                                <%= f.text_field :name, class: "form-control", :placeholder => "Variant of answer" %>
+                              </div>
+                              <div class="form-group">
+                                <label>
+                                  <%= f.check_box :answer %> It is a true variant
+                                </label>
+                              </div>
+                              <div class="form-group">
+                                <label>
+                                  <%= f.file_field :avatar, :class => "input-file" %>
+                                </label>
+                              </div>
+                              <div class="modal-footer">
+                                <%= f.submit :class => "btn btn-success modal-ok-button" %>
+                              </div>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-<table>
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th colspan="3"></th>
-  </tr>
-  </thead>
+                  <a class="btn-primary unblock-and-delete-buttons" data-toggle="modal" data-target="#myModaleditquestionname<%= question.id %>">
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                  </a>
 
-  <tbody>
-  <% @questions.each do |question| %>
-      <tr>
-        <td><%= question.name %></td>
-        <td><%= link_to 'Edit name', edit_question_path(question) %></td>
-        <td><%= link_to 'Destroy', question, method: :delete, data: {confirm: 'Are you sure?'} %></td>
-        <td>
-          <%= form_for [question, @variant] do |f| %>
-              <div>
-                <%= f.text_field :name %>
-                <%= f.check_box :answer %>
-                <%= f.file_field :avatar %>
-                <%= f.submit %>
-          <% end %>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <% question.variants.each do |current_variant| %>
-            <td><%= current_variant.name %></td>
-            <td><%= current_variant.answer %></td>
-            <td><%= image_tag current_variant.avatar.url(:thumb) %></td>
-            <td><%= link_to 'Destroy', "/questions/#{question.id}/variants/#{current_variant.id}", method: :delete, data: {confirm: 'Are you sure?'} %></td>
-      <% end %>
-        </td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
+                  <div class="modal fade" id="myModaleditquestionname<%= question.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title" id="myModalLabel">Edit question name</h4>
+                        </div>
+                        <div class="modal-body">
+                          <%= form_for([@test, question]) do |f| %>
+                              <div class="form-group">
+                                <%= f.text_field :name, class: "form-control edit-test-control", :placeholder => "Question name" %>
+                              </div>
+                              <div class="form-group">
+                                <%= f.submit :class => "btn btn-success btn-block " %>
+                              </div>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <%= link_to '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>'.html_safe, question, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn-danger unblock-and-delete-buttons" %>
+                </h4>
+              </div>
+            </div>
+            <div class="row">
+              <% question.variants.each do |current_variant| %>
+                  <div class="col-md-3">
+                    <div class="thumbnail <%= "true-variant" if current_variant.answer %>">
+                      <%= link_to '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>'.html_safe, "/questions/#{question.id}/variants/#{current_variant.id}", method: :delete, data: {confirm: 'Are you sure?'},:class=>"btn-danger delete-result-button" %>
+
+                      <div style="background: url(<%= current_variant.avatar.url %>) 100% 100% no-repeat;
+                          background-size: contain;
+                          background-position: 50% 50%; height: 100px;">
+                      </div>
+                      <div class="caption">
+                        <p style="text-align: center; word-wrap: break-word" class="result-describe-edit">
+                          <%= current_variant.name %>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+              <% end %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
