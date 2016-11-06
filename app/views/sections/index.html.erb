@@ -1,11 +1,10 @@
-<div class="container">
-  <div id="classHeader">
     <% if @sections.empty? %>
-        <h3> Sections is not found. Please, log in and create section</h3>
+        <div class="no-element-message">
+         Sections is not found. Please, log in and create section
+        </div>
     <% else %>
         <h3>Sections</h3>
     <% end %>
-  </div>
   <% if user_signed_in? %>
       <div class="row">
         <div class="btn-group btn-group-justified" role="group">
@@ -59,5 +58,4 @@
       </div>
 
   <% end %>
-</div>
 

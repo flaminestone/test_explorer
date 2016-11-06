@@ -90,3 +90,14 @@ a.login-link{
 a.login-bottom:hover{
     color: #000000;
 }
+.no-element-message{
+    text-align: center;
+    border: 1px solid;
+    width: 500px;
+    height: 150px;
+    background-color: #FAFAFA;
+    margin: auto;
+    margin-top: 30px;
+    font-size: 22px;
+    padding-top: 100px;
+}
