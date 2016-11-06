@@ -33,7 +33,6 @@ ActiveRecord::Schema.define(version: 20160526233024) do
     t.string   "section_result_name"
     t.string   "test_result_name"
     t.string   "result"
-    t.string   "session_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
   end
