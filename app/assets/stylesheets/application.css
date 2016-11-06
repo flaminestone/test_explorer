@@ -14,28 +14,79 @@
  *= require_self
  */
 
-@font-face {
-    font-family: 'Glyphicons Halflings';
-    src: url('/assets/glyphicons-halflings-regular.eot');
-    src: url('/assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/assets/glyphicons-halflings-regular.woff') format('woff'), url('/assets/glyphicons-halflings-regular.ttf') format('truetype'), url('/assets/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+.navbar-app{
+    background-color: #C7C7C7;
+    border-radius: 0;
+    height: 48px;
+    text-align: left;
+    padding: 4px 24px 4px 24px;
+    position:relative;
+    min-width: 815px;
 }
-#block_element {
-    background-color: #fff;
-    color: #000000;
-    display: block;
-    height: 3em;
+html {
+    height: 100%;
+    width: 100%;
+}
+body {
+    background: #EDEDED;
+    color: #333;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: normal;
+    height: 100%;
+    margin: 0;
+    padding: 0;
     text-decoration: none;
-    text-align: center;
-    font-size: large;
-    border: 1px solid #b5b5b5;
-    line-height: 3em;
 }
-.time_icon {
-    display: block;
-    height: 3em;
-    padding: 3px;
+
+div {
+    margin: 0;
+    padding: 0;
+}
+.test-explorer-name-block{
+    margin-top: 12px;
+    display:inline-block;
+}
+
+a.test-explorer-link{
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 18px;
+    color: #333;
+}
+a.link{
+    background-color: rgba(0, 0, 0, 0);
+}
+a.login-link:hover{
+    color: #ffffff;
+}
+
+a.login-link{
+    color: #ffffff;
+}
+.mainpage{
+    min-width: 800px;
+}
+.log-in-box{
+    float: right;
+    display:inline-block;
+    cursor: pointer;
+    margin-left: 30px;
+    padding-top: 10px;
+    height: 40px;
     vertical-align: middle;
 }
-.log-out-and-in-button{
-    font-size: 1.2em;
+.user-name{
+    border: 1px solid;
+    border-color: #000000;
+    display: inline-block;
+    color: #333;
+    background-color: #ffffff;
+    padding: 5px 15px 5px 15px;
+}
+.login-bottom{
+ margin-left: 10px;
+}
+a.login-bottom:hover{
+    color: #000000;
 }
