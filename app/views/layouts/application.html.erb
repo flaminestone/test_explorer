@@ -13,7 +13,7 @@
   </div>
   <div class="log-in-box">
  <% if user_signed_in? %>
-         <span class="navbar-text navbar-right">Signed in as <%= current_user.email %></span>
+         <span class="navbar-text" style="margin-top: 7px;">Signed in as <%= current_user.email %></span>
          <a class="link login-bottom"  href= <%= destroy_user_session_path %> data-method="delete" rel="nofollow"><div class="user-name"> Logout</div></a>
    <% else %>
         <a class="link login-bottom" href=<%= new_user_session_path %>><div class="user-name"> Login for Theater</div> </a>

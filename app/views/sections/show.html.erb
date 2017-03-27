@@ -1,49 +1,67 @@
 <div class="container">
   <div id="classHeader">
-    <h3>Tests</h3>
+    <% if user_signed_in? %>
+        <%= button_to '+', new_section_test_path(@section), :class => 'hided', id: 'add_new_element_selector' %>
+        <h3>Tests
+          <div class="add_new_element" onclick="$('#add_new_element_selector').click()">+</div>
+        </h3>
+    <% else %>
+        <h3>Tests</h3>
+    <% end %>
   </div>
   <% if user_signed_in? %>
       <div class="row">
         <div class="btn-group btn-group-justified" role="group">
           <div class="btn-group" role="group">
-            <%= button_to 'Create new test', new_section_test_path(@section), :class => 'btn btn-success' %>
+
           </div>
         </div>
       </div>
   <% end %>
   <div class="row">
     <% @tests.each do |test| %>
-        <div class="section_item">
-          <div class=<%= user_signed_in? ? "col-xs-7" : "col-xs-9" %>>
-            <a id="block_element" href="<%= students_new_path(:section => @section.id, :test => test.id) %>"><span class="section-data"><%= test.name %>
-              <span class="badge count-of-tests"><%= test.questions.count %></span></span></a></div>
-        </div>
-        <div class="col-xs-2">
-          <div id="block_element">&#9200;<%= test.time_out %>
-            <% if test.time_out.nil? %>
-                &#8734;
-            <% end %>
-            min
+        <div class="block-element">
+          <div class="section_item">
+            <div class="col-xs-9">
+              <a id="block_element" class="link" href="<%= students_new_path(:section => @section.id, :test => test.id) %>">
+                <span class="section-data">
+                  <%= test.name %>
+
+                  <% if user_signed_in? %>
+                <a id="block_element" class="link" href="<%= edit_section_test_path(@section, test) %>">
+                  <span class="admin_link">Edit</span>
+                </a>
+                  <a data-confirm="Are you sure?" class="link" rel="nofollow" data-method="delete" href=<%= "#{section_path(@section)}/tests/#{test.id}" %>>
+                    <span class="admin_link">Delete</span>
+                  </a>
+                   <% end %>
+
+
+                  <span class="badge count-of-tests">
+                  <%= test.questions.count %></span>
+                </span>
+              </a>
+            </div>
+          </div>
+          <div class="col-xs-2">
+            <div id="block_element">&#9200;<%= test.time_out %>
+              <% if test.time_out.nil? %>
+                  &#8734;
+              <% end %>
+              min
+            </div>
+          </div>
+          <div class="col-xs-1">
+            <div id="block_element">
+              <% if test.come_back %>
+                  &#9668;
+              <% else %>
+                  &#8855;
+              <% end %>
+            </div>
           </div>
         </div>
-        <div class="col-xs-1">
-          <div id="block_element">
-            <% if test.come_back %>
-                &#9668;
-            <% else %>
-                &#8855;
-            <% end %>
-          </div>
-        </div>
-        <div class="col-xs-1 <%= "hidden" unless user_signed_in? %>"><a id="block_element" href="<%= edit_section_test_path(@section, test)%>">
-          <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-        </a>
-        </div>
-        <div class="col-xs-1 <%= "hidden" unless user_signed_in? %>"  style="cursor: pointer;"><a id="block_element" onclick="$('.delete-link').click()">
-          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-          <%= link_to 'delete-link', "#{section_path(@section)}/tests/#{test.id}", method: :delete, data: {confirm: 'Are you sure?'}, class: "delete-link hidden" %>
-        </a>
-        </div>
+
     <% end %>
   </div>
 </div>

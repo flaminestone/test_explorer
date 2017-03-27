@@ -1,61 +1,50 @@
-    <% if @sections.empty? %>
-        <div class="no-element-message">
-         Sections is not found. Please, log in and create section
-        </div>
-    <% else %>
-        <h3>Sections</h3>
-    <% end %>
+<div class="naming-block">
   <% if user_signed_in? %>
-      <div class="row">
-        <div class="btn-group btn-group-justified" role="group">
-          <div class="btn-group" role="group">
-            <%= button_to 'Create new section', new_section_path, :class => 'btn btn-success' %>
-          </div>
-        </div>
-      </div>
+
+      <h1>Sections
+        <div class="add_new_element" onclick="$('#add_new_element_selector').click()">+</div>
+      </h1>
+      <%= button_to '+', new_section_path, :class => 'hided', id: 'add_new_element_selector' %>
+  <% else %>
+      <h1>Sections</h1>
   <% end %>
-  <div class="row">
-    <% unless @sections.nil? %>
-        <% @sections.where(blocking: false).each do |section| %>
-            <div class=<%= user_signed_in? ? "col-xs-11" : "col-xs-12" %>>
 
-              <a id="block_element" href="<%= section_path(section) %>">
-                <span class="section-data"><%= section.name %>
-                  <span class="badge count-of-tests"><%= section.tests.count %></span>
+</div>
+<div class="row">
+  <% unless @sections.nil? %>
+      <% @sections.where(blocking: false).each do |section| %>
+          <div class="col-xs-12">
+            <div class="block-element">
+              <a class="link" href="<%= section_path(section) %>">
+                <span class="section-data">
+                  <%= section.name %>
                 </span>
+                <a class="link <%= "hidden" unless user_signed_in? %>" data-method="block" rel="nofollow" href=<%= "/block/#{section.id}" %>>
+                  <span style="color: red;">Block</span>
+                </a>
+                <span class="badge count-of-tests"><%= section.tests.count %></span>
               </a>
             </div>
-            <div class="col-xs-1 <%= "hidden" unless user_signed_in? %>">
-              <a id="block_element" data-method="block" rel="nofollow" href=<%= "/block/#{section.id}" %>
-                  <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-              </a>
-            </div>
-        <% end %>
-    <% end %>
-
-  </div>
-  <% if user_signed_in? %>
-      <% unless @sections.where(blocking: true).empty? %>
-          <div class="alert alert-info element-is-blocked-alert" role="alert" style="text-align: center">
-            This sections is blocked. Users cant see it. You can unblock or delete
+          </div>
 
       <% end %>
-      <div class="row">
-        <div class="col-xs-12">
+  <% end %>
+</div>
+<% if user_signed_in? %>
+    <% unless @sections.where(blocking: true).empty? %>
           <% @sections.where(blocking: true).each do |section| %>
-              <div class="section_item">
-                <div id="block_element" href="<%= section_path(section) %>">
-                  <span class="section-data"><%= section.name %> [BLOCKED]</span>
-                  <%= link_to '<span class="glyphicon glyphicon-share" aria-hidden="true"></span>'.html_safe, "/unblock/#{section.id}", :method => 'unblock', class: "btn-default unblock-and-delete-buttons" %>
-                  <%= link_to '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>'.html_safe, section, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn-default unblock-and-delete-buttons" %>
-                  <span class="badge count-of-tests"><%= section.tests.count %></span>
-                  </span>
+              <div class="col-xs-12">
+                <div class="block-element">
+                  <a class="link" href="<%= section_path(section) %>">
+                <span class="section-data">
+                  <%= section.name %>[BLOCKED]
+                </span>
+                    <a class="link admin_link" rel="nofollow" data-method="unblock" href="/unblock/<%= section.id %>"><span class="admin_link">Unblock</span></a>
+                    <a data-confirm="Are you sure?" class="link admin_link" rel="nofollow" data-method="delete" href="/sections/<%= section.id %>"><span class="admin_link">Delete</span></a>
+                    <span class="badge count-of-tests"><%= section.tests.count %></span>
+                  </a>
                 </div>
               </div>
           <% end %>
-        </div>
-      </div>
-      </div>
-
-  <% end %>
-
+    <% end %>
+<% end %>

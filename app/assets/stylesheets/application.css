@@ -72,7 +72,7 @@ a.login-link{
     display:inline-block;
     cursor: pointer;
     margin-left: 30px;
-    padding-top: 10px;
+    padding-top: 5px;
     height: 40px;
     vertical-align: middle;
 }
@@ -109,4 +109,33 @@ a.login-bottom:hover{
     margin: auto;
     margin-top: 30px;
 
+}
+.block-element {
+    margin: auto;
+    width: 700px;
+    height: 65px;
+    background-color: #FAFAFA;
+    border: 1px solid;
+    margin-bottom: 10px;
+    padding-top: 20px;
+}
+.naming-block {
+    width: 700px;
+    text-align: center;
+    margin: auto;
+}
+.add_new_element {
+    display: inline;
+    border: 2px solid;
+    font-size: 21px;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+    color: red ;
+}
+.hided{
+    display: none;
+}
+.admin_link{
+    color: red ;
 }

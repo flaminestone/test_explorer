@@ -5,6 +5,17 @@
       <%= f.text_field :group, autofocus: true, :class => 'form-control', :placeholder => "Group", :required => "" %>
       <%= f.hidden_field :section_result_name, :value => params[:section] %>
       <%= f.hidden_field :test_result_name, :value => params[:test] %>
-      <%= f.submit "Sign up", :class => "btn btn-lg btn-success btn-block" %>
+      <input type="submit" name="commit" value="Start" class="btn-login">
   <% end %>
 </div>
+<style>
+  .form-signin{
+    margin: auto;
+  }
+    .form-control{
+      margin-bottom: 15px;
+    }
+    .btn-login{
+      margin-left: 80px;
+    }
+</style>

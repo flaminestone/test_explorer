@@ -19,7 +19,12 @@ class TestsController < ApplicationController
   # GET /tests/new
   def new
     @test = Test.new
-    @section = Section.find_by_id(params.require(:id))
+    p params
+    if params.key?("section_id")
+      @section = Section.find_by_id(params.require(:section_id))
+    else
+      @section = Section.find_by_id(params.require(:id))
+    end
     @question = Question.new
   end
 
