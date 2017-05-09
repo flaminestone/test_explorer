@@ -1,9 +1,15 @@
-<div class="container">
-  <div class="col-md-6 col-md-offset-3">
-<%= form_for(@section, :html => {:class => "form-horizontal"}) do |f| %>
-      <h3 class="form-signin-heading">Create Section</h3>
-          <%= f.text_field :name, class: 'form-control', placeholder: 'Section name', autofocus: true%>
-          <%= f.submit :class => "create_new_section" %>
-<% end %>
-  </div>
+<div class="create_new">
+  <%= form_for(@section, :html => {:class => "form-horizontal"}) do |f| %>
+      <div class="form_element">
+        <div style="  text-align: center;font-size: 22px;">
+          Create Section
+        </div>
+      </div>
+      <div class="form_element">
+        <%= f.text_field :name, class: 'field-input-section-name', placeholder: 'Section name', autofocus: true %>
+      </div>
+      <div class="form_element">
+        <%= f.submit :class => "create_new_section" %>
+      </div>
+  <% end %>
 </div>

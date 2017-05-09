@@ -14,19 +14,21 @@
  *= require_self
  */
 
-.navbar-app{
+.navbar-app {
     background-color: #C7C7C7;
     border-radius: 0;
     height: 48px;
     text-align: left;
     padding: 4px 24px 4px 24px;
-    position:relative;
+    position: relative;
     min-width: 815px;
 }
+
 html {
     height: 100%;
     width: 100%;
 }
+
 body {
     background: #EDEDED;
     color: #333;
@@ -42,41 +44,47 @@ div {
     margin: 0;
     padding: 0;
 }
-.test-explorer-name-block{
+
+.test-explorer-name-block {
     margin-top: 12px;
-    display:inline-block;
+    display: inline-block;
 }
 
-a.test-explorer-link{
+a.test-explorer-link {
     text-decoration: none;
     font-weight: bold;
     cursor: pointer;
     font-size: 18px;
     color: #333;
 }
-a.link{
+
+a.link {
     background-color: rgba(0, 0, 0, 0);
 }
-a.login-link:hover{
+
+a.login-link:hover {
     color: #ffffff;
 }
 
-a.login-link{
+a.login-link {
     color: #ffffff;
 }
-.mainpage{
+
+.mainpage {
     min-width: 800px;
 }
-.log-in-box{
+
+.log-in-box {
     float: right;
-    display:inline-block;
+    display: inline-block;
     cursor: pointer;
     margin-left: 30px;
     padding-top: 7px;
     height: 40px;
     vertical-align: middle;
 }
-.user-name{
+
+.user-name {
     border: 1px solid;
     border-color: #000000;
     display: inline-block;
@@ -84,13 +92,16 @@ a.login-link{
     background-color: #ffffff;
     padding: 5px 15px 5px 15px;
 }
-.login-bottom{
- margin-left: 10px;
+
+.login-bottom {
+    margin-left: 10px;
 }
-a.login-bottom:hover{
+
+a.login-bottom:hover {
     color: #000000;
 }
-.no-element-message{
+
+.no-element-message {
     text-align: center;
     border: 1px solid;
     width: 500px;
@@ -102,7 +113,8 @@ a.login-bottom:hover{
     padding-top: 100px;
     line-height: 24px;
 }
-.login_or_registr_box{
+
+.login_or_registr_box {
     background-color: #FAFAFA;
     border: 1px solid;
     width: 500px;
@@ -110,6 +122,7 @@ a.login-bottom:hover{
     margin-top: 30px;
 
 }
+
 .block-element {
     margin: auto;
     width: 700px;
@@ -119,11 +132,13 @@ a.login-bottom:hover{
     margin-bottom: 10px;
     padding-top: 20px;
 }
+
 .naming-block {
     width: 700px;
     text-align: center;
     margin: auto;
 }
+
 .add_new_element {
     display: inline;
     border: 2px solid;
@@ -131,11 +146,32 @@ a.login-bottom:hover{
     padding-left: 10px;
     padding-right: 10px;
     cursor: pointer;
-    color: red ;
+    color: red;
 }
-.hided{
+
+.hided {
     display: none;
 }
-.admin_link{
-    color: red ;
+
+.admin_link {
+    color: red;
+}
+
+.create_new {
+    text-align: center;
+    background-color: #FAFAFA;
+    border: 1px solid;
+    width: 500px;
+    margin: 30px auto;
+    padding: 5px;
+}
+
+.field-input-section-name {
+    padding: 10px;
+    font-size: 16px;
+}
+
+.form_element {
+    margin: 10px;
+    width: 100%;
 }
