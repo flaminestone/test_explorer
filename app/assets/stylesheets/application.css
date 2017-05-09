@@ -44,7 +44,12 @@ div {
     margin: 0;
     padding: 0;
 }
-
+a{
+    text-decoration: none;
+}
+a.link:hover{
+    text-decoration: underline;
+}
 .test-explorer-name-block {
     margin-top: 12px;
     display: inline-block;
