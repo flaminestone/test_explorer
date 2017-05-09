@@ -1,12 +1,12 @@
 <div class="container">
-  <div id="classHeader">
+  <div class="naming-block">
     <% if user_signed_in? %>
         <%= button_to '+', new_section_test_path(@section), :class => 'hided', id: 'add_new_element_selector' %>
-        <h3>Tests
+        <h1>Tests
           <div class="add_new_element" onclick="$('#add_new_element_selector').click()">+</div>
-        </h3>
+        </h1>
     <% else %>
-        <h3>Tests</h3>
+        <h1>Tests</h1>
     <% end %>
   </div>
   <% if user_signed_in? %>
