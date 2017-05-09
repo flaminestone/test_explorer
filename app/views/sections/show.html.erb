@@ -22,48 +22,37 @@
     <% @tests.each do |test| %>
         <div class="block-element">
           <div class="section_item">
-            <div class="col-xs-9">
-              <a id="block_element" class="link" href="<%= students_new_path(:section => @section.id, :test => test.id) %>">
+            <a class="link" href="<%= students_new_path(:section => @section.id, :test => test.id) %>">
                 <span class="section-data">
                   <%= test.name %>
-
                   <% if user_signed_in? %>
-                <a id="block_element" class="link" href="<%= edit_section_test_path(@section, test) %>">
+                <a class="link" href="<%= edit_section_test_path(@section, test) %>">
                   <span class="admin_link">Edit</span>
                 </a>
                   <a data-confirm="Are you sure?" class="link" rel="nofollow" data-method="delete" href=<%= "#{section_path(@section)}/tests/#{test.id}" %>>
                     <span class="admin_link">Delete</span>
                   </a>
                    <% end %>
-
-
                   <span class="badge count-of-tests">
                   <%= test.questions.count %></span>
                 </span>
-              </a>
-            </div>
-          </div>
-          <div class="col-xs-2">
-            <div id="block_element">&#9200;<%= test.time_out %>
+            </a>
+            <span class="come_back_icon">
+            <% if test.come_back %>
+                &#9668;
+            <% else %>
+                &#8855;
+            <% end %>
+          </span>
+            <span class="time_out_icon">&#9200;<%= test.time_out %>
               <% if test.time_out.nil? %>
-                  &#8734;
-              <% end %>
+        &#8734;
+    <% end %>
               min
-            </div>
-          </div>
-          <div class="col-xs-1">
-            <div id="block_element">
-              <% if test.come_back %>
-                  &#9668;
-              <% else %>
-                  &#8855;
-              <% end %>
-            </div>
+  </span>
           </div>
         </div>
-
+        </div>
     <% end %>
-  </div>
+    </div>
 </div>
-
-
