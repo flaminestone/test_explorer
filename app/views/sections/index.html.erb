@@ -19,7 +19,7 @@
                 <span class="section-data">
                   <%= section.name %>
                 </span>
-                <a class="link <%= "hidden" unless user_signed_in? %>" data-method="block" rel="nofollow" href=<%= "/block/#{section.id}" %>>
+                <a class="link <%= "hided" unless user_signed_in? %>" data-method="block" rel="nofollow" href=<%= "/block/#{section.id}" %>>
                   <span style="color: red;">Block</span>
                 </a>
                 <span class="badge count-of-tests"><%= section.tests.count %></span>
