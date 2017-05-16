@@ -9,15 +9,6 @@
         <h1>Tests</h1>
     <% end %>
   </div>
-  <% if user_signed_in? %>
-      <div class="row">
-        <div class="btn-group btn-group-justified" role="group">
-          <div class="btn-group" role="group">
-
-          </div>
-        </div>
-      </div>
-  <% end %>
   <div class="row">
     <% @tests.each do |test| %>
         <div class="block-element">
@@ -26,6 +17,9 @@
                 <span class="section-data">
                   <%= test.name %>
                   <% if user_signed_in? %>
+                      <a class="link" href="<%= edit_section_test_path(@section, test)%>">
+                        <span class="add_question_link">Add Question</span>
+                      </a>
                       <a class="link myBtn" id="myBtn" value="<%= test.id %>" style="cursor: pointer;">
                         <span class="admin_link">Edit</span>
                       </a>
@@ -53,7 +47,6 @@
           </div>
         </div>
         </div>
-
         <div id="myModal" value="<%= test.id %>" class="modal">
           <!-- Modal content -->
           <div class="modal-content">
@@ -100,7 +93,7 @@
         $(".modal").css("display", "none");
     });
 
-    window.onclick = function(event) {
+    window.onclick = function (event) {
         if ($(event.target).hasClass('modal')) {
             $(".modal").css("display", "none");
         }
