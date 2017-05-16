@@ -176,6 +176,11 @@ a.login-bottom:hover {
     font-size: 16px;
 }
 
+.field-input-test_edit {
+    padding: 10px;
+    font-size: 16px;
+}
+
 .form_element {
     margin: 10px;
     width: 100%;
