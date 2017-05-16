@@ -43,7 +43,7 @@ class TestsController < ApplicationController
     respond_to do |format|
       if @test.save
         get_section.tests << @test
-        format.html { redirect_to  section_test_path(get_section, @test), notice: 'Test was successfully created.' }
+        format.html { redirect_to edit_section_test_path(get_section, @test), notice: 'Test was successfully created.' }
         format.json { render :show, status: :created, location: @test }
       else
         format.html { render :new }
