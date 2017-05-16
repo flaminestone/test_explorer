@@ -57,7 +57,7 @@ class TestsController < ApplicationController
   def update
     respond_to do |format|
       if @test.update(test_params)
-        format.html { redirect_to edit_section_test_path(get_section, @test), notice: 'Test was successfully updated.' }
+        format.html { redirect_to :back, notice: 'Test was successfully updated.' }
         format.json { render :show, status: :ok, location: @test }
       else
         format.html { render :edit }

@@ -26,12 +26,12 @@
                 <span class="section-data">
                   <%= test.name %>
                   <% if user_signed_in? %>
-                <a class="link" href="<%= edit_section_test_path(@section, test) %>">
-                  <span class="admin_link">Edit</span>
-                </a>
-                  <a data-confirm="Are you sure?" class="link" rel="nofollow" data-method="delete" href=<%= "#{section_path(@section)}/tests/#{test.id}" %>>
-                    <span class="admin_link">Delete</span>
-                  </a>
+                      <a class="link myBtn" id="myBtn" value="<%= test.id %>" style="cursor: pointer;">
+                        <span class="admin_link">Edit</span>
+                      </a>
+                      <a data-confirm="Are you sure?" class="link" rel="nofollow" data-method="delete" href=<%= "#{section_path(@section)}/tests/#{test.id}" %>>
+                        <span class="admin_link">Delete</span>
+                     </a>
                    <% end %>
                   <span class="badge count-of-tests">
                   <%= test.questions.count %></span>
@@ -53,6 +53,56 @@
           </div>
         </div>
         </div>
+
+        <div id="myModal" value="<%= test.id %>" class="modal">
+          <!-- Modal content -->
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="create_new">
+              <%= form_for([@section, test], :html => {:class => "form-horizontal"}) do |f| %>
+                  <div class="form_element">
+                    <div style="text-align: center;font-size: 22px;">
+                      Edit test
+                    </div>
+                  </div>
+                  <div class="form_element">
+                    <%= f.text_field :name, class: "field-input-section-name", placeholder: "Test name", autofocus: true %>
+                  </div>
+                  <div class="form_element">
+                    <%= f.text_field :time_out, class: "field-input-section-name", placeholder: "Time out" %>
+                  </div>
+
+                  <div class="form_element">
+                    <div class="edit-test-control">
+                      <%= f.check_box :come_back, :class => "comeback" %>
+                      <label>Opportunity to return</label>
+                    </div>
+                  </div>
+                  <div class="form_element">
+                    <%= f.submit :class => "create_new_section" %>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
     <% end %>
     </div>
 </div>
+
+<script>
+    $(".myBtn").click(function () {
+        var selector = ".modal[value=" + $(this).attr('value') + "]";
+        $(selector).css('display', 'block');
+        console.log($(selector));
+    });
+
+    $(".close").click(function () {
+        $(".modal").css("display", "none");
+    });
+
+    window.onclick = function(event) {
+        if ($(event.target).hasClass('modal')) {
+            $(".modal").css("display", "none");
+        }
+    }
+</script>
