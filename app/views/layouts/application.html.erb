@@ -1,33 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>TestExplorer</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <title>Text Explorer</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<style>
-  body { padding-top: 70px; }
-</style>
-
-
-
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href=<%= root_path %>>Test Explorer</a>
-    </div>
-    <ul class="nav navbar-nav navbar-right">
-      <% if user_signed_in? %>
-          <li style="margin-right: 10px;"><p class="navbar-text navbar-right">Signed in as <%= current_user.email %></p></li>
-          <li><a href= <%= destroy_user_session_path %> data-method="delete" rel="nofollow"><span class="glyphicon glyphicon-log-out log-out-button"></span> Logout</a></li>
-    <% else %>
-          <li><a href= <%= new_user_session_path %>><span class="glyphicon glyphicon-log-in log-out-and-in-button"></span> Login</a></li>
-    <% end %>
-    </ul>
+<div class="navbar-app">
+  <div class="test-explorer-name-block">
+    <a class="link test-explorer-link" href=<%= root_path %>>Test Explorer</a>
   </div>
-</nav>
-<%= yield %>
+  <div class="log-in-box">
+ <% if user_signed_in? %>
+         <span class="navbar-text" style="margin-top: 7px;">Signed in as <%= current_user.email %></span>
+         <a class="link login-bottom"  href= <%= destroy_user_session_path %> data-method="delete" rel="nofollow"><div class="user-name"> Logout</div></a>
+   <% else %>
+        <a class="link login-bottom" href=<%= new_user_session_path %>><div class="user-name"> Login for Theater</div> </a>
+   <% end %>
+
+
+  </div>
+</div>
+<div class="mainpage">
+  <%= yield %>
+</div>
 </body>
 </html>

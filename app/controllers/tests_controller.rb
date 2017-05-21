@@ -19,7 +19,12 @@ class TestsController < ApplicationController
   # GET /tests/new
   def new
     @test = Test.new
-    @section = Section.find_by_id(params.require(:id))
+    p params
+    if params.key?("section_id")
+      @section = Section.find_by_id(params.require(:section_id))
+    else
+      @section = Section.find_by_id(params.require(:id))
+    end
     @question = Question.new
   end
 
@@ -38,7 +43,7 @@ class TestsController < ApplicationController
     respond_to do |format|
       if @test.save
         get_section.tests << @test
-        format.html { redirect_to  section_test_path(get_section, @test), notice: 'Test was successfully created.' }
+        format.html { redirect_to edit_section_test_path(get_section, @test), notice: 'Test was successfully created.' }
         format.json { render :show, status: :created, location: @test }
       else
         format.html { render :new }
@@ -52,7 +57,7 @@ class TestsController < ApplicationController
   def update
     respond_to do |format|
       if @test.update(test_params)
-        format.html { redirect_to edit_section_test_path(get_section, @test), notice: 'Test was successfully updated.' }
+        format.html { redirect_to :back, notice: 'Test was successfully updated.' }
         format.json { render :show, status: :ok, location: @test }
       else
         format.html { render :edit }

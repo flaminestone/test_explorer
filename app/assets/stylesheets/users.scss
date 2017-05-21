@@ -1,20 +1,19 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-body {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: #eee;
-}
 
 .form-signin {
-  max-width: 330px;
   padding: 15px;
-  margin: 0 auto;
+  margin-left: 65px;
+  margin-right: 65px;
 }
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
   margin-bottom: 10px;
+}
+.form-signin-heading{
+  text-align: center;
+  font-size: 22px;
 }
 .form-signin .checkbox {
   font-weight: normal;
@@ -40,4 +39,36 @@ body {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+.field-input {
+  margin-left: 42px;
+  margin-top: 10px;
+ }
+.btn-login {
+  border: 1px solid;
+  border-color: #666;
+  display: inline-block;
+  color: #333;
+  background-color: #ffffff;
+  padding: 5px 50px 5px 50px;
+  margin-left: 100px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.messages_no_circle {
+  text-align: center;
+  width: 300px;
+  margin: auto;
+  border: 1px solid;
+  border-radius: 50px;
+  margin-top: 15px;
+  padding: 15px 15px 15px 15px;
+  background-color: rgba(148, 240, 84, 0.39);
+}
+a.link:hover{
+  color: #666;
+}
+
+a.link{
+  color: #666;
 }

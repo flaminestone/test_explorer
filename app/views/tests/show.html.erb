@@ -1,83 +1,57 @@
 <%= form_tag("/consider", method: "post") do %>
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="row-fluid">
-          <div class="finish-button">
-
-            <button type="submit" name="commit" value="finish" class="btn btn-default finish-button">
-              <span class="glyphicon glyphicon-saved next-question" aria-hidden="true"></span>
-            </button>
-          </div>
-
-          <div class="question-button">
-            <button type="button" class="btn btn-default prev-slide" aria-label="Left Align">
-              <span class="glyphicon glyphicon-arrow-left next-question" aria-hidden="true"></span>
-            </button>
-
-            <button type="button" class="btn btn-default next-slide" aria-label="Left Align">
-              <span class="glyphicon glyphicon-arrow-right next-question" aria-hidden="true"></span>
-            </button>
-          </div>
+        <div class="question-buttons">
+          <button class="prev">&lt;&lt;</button>
+          <button class="next">&gt;&gt;</button>
+          <button type="submit" name="commit" value="finish" class="finish-button">
+            <span style="font-size: large">Finish</span>
+          </button>
         </div>
+        <div class="current_question">
+        <ul>
+          <% @questions.each_with_index do |question, i| %>
+              <li>
+                <div class="question-name">
+                 <p>Question <%= i + 1 %> (<%= @questions.size %>): <b><%= question.name %></b></p>
+                </div>
+                <div class="answers">
+                <% question.variants.each do |current_variant| %>
+                      <div class="current_answer">
+                        <%= check_box_tag("[questions]#{question.id}[#{current_variant.id}]".to_sym, '0', false, :class => 'checkbox hided') %>
 
-        <div class="col-md-12">
-          <div class="examplecarusel">
+                      <div class="big-answer-image" id="<%= "[questions]#{question.id}[#{current_variant.id}]".to_sym %>" style="background: url(<%= current_variant.avatar.url %>) 100% 100% no-repeat;
+                          background-size: contain;
+                          background-position: 50% 50%; cursor:pointer;">
+                      </div>
+                      <div class="result-describe">
+                        <h3><%= current_variant.name %></h3>
+                      </div>
+                      </div>
 
-            <div id="myCarousel2" class="carousel slide" data-interval="0" data-ride="carousel">
-              <div class="carousel-inner">
-                <% first_selector = 'active' %>
-                <% @questions.each_with_index do |question, i| %>
-
-                    <div class="<%= first_selector %> item">
-                      <p>
-                      <h4>Question <%= i + 1 %> (<%= @questions.size %>): <b><%= question.name %></b></h4>
-                      </p>
-                      <% question.variants.each do |current_variant| %>
-                          <div class="col-md-4">
-                            <div class="thumbnail" id="<%= "[questions]#{question.id}[#{current_variant.id}]".to_sym %>">
-                              <%= check_box_tag("[questions]#{question.id}[#{current_variant.id}]".to_sym, '0', false, :class=>'checkbox hidden')%>
-
-                              <div class="result-item" style="background: url(<%= current_variant.avatar.url %>) 100% 100% no-repeat;
-                                  background-size: contain;
-                                  background-position: 50% 50%; cursor:pointer;">
-
-                              </div>
-                              <div class="caption result-describe">
-                                <h3><%= current_variant.name %></h3>
-                              </div>
-                            </div>
-                          </div>
-                      <% end %>
-                    </div>
-                    <% first_selector = '' %>
                 <% end %>
-              </div>
-            </div>
-          </div>
+                </div>
+              </li>
+          <% end %>
+        </ul>
         </div>
-      </div>
 <% end %>
-</div>
 <script>
-  $(document).ready(function () {
-    // Инициализирует карусель
-    $("#myCarousel2").carousel('pause');
-    // Осуществляет переход на предыдущий слайд
-    $(".prev-slide").click(function () {
-      $("#myCarousel2").carousel('prev');
+    $(document).ready(function () {
+        $(".current_question").jCarouselLite({
+            btnNext: ".next",
+            btnPrev: ".prev",
+            scroll: 1,
+            visible: 1,
+            circular: false
+        });
     });
-    // Осуществляет переход на следующий слайд
-    $(".next-slide").click(function () {
-      $("#myCarousel2").carousel('next');
-    });
-  });
 
-  $(".thumbnail").on('click', function() {
-    if($(this).children('.checkbox').is(":checked")){
-      $(this).find('input[type=checkbox]').prop('checked', false);
-      this.style.backgroundColor="rgb(255, 255, 255)"}else{
-      $(this).find('input[type=checkbox]').prop('checked', true);
-      this.style.backgroundColor="rgb(204, 255, 204)"
-    }
-  });
+    $(".current_answer").on('click', function () {
+        if ($(this).children('.checkbox').is(":checked")) {
+            $(this).find('input[type=checkbox]').prop('checked', false);
+            this.style.backgroundColor = "rgb(255, 255, 255)"
+        } else {
+            $(this).find('input[type=checkbox]').prop('checked', true);
+            this.style.backgroundColor = "rgb(204, 255, 204)"
+        }
+    });
 </script>

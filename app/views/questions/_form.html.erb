@@ -1,8 +1,8 @@
 <%= form_for([@test, @question]) do |f| %>
-    <div class="col-xs-8 ">
-      <%= f.text_field :name, class: "form-control edit-test-control", :placeholder => "Question name" %>
+    <div class="form_element">
+      <%= f.text_field :name, class: "field-input-section-name", :placeholder => "Question name" %>
     </div>
-    <div class="col-xs-4">
-        <%= f.submit :class => "btn btn-success btn-block "%>
+    <div class="form_element">
+        <%= f.submit :class => "create_new_section"%>
       </div>
 <% end %>

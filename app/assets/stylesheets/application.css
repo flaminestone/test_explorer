@@ -14,28 +14,228 @@
  *= require_self
  */
 
-@font-face {
-    font-family: 'Glyphicons Halflings';
-    src: url('/assets/bootstrap/glyphicons-halflings-regular.eot');
-    src: url('/assets/bootstrap/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/assets/bootstrap/glyphicons-halflings-regular.woff') format('woff'), url('/assets/bootstrap/glyphicons-halflings-regular.ttf') format('truetype'), url('/assets/bootstrap/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+.navbar-app {
+    background-color: #C7C7C7;
+    border-radius: 0;
+    height: 48px;
+    text-align: left;
+    padding: 4px 24px 4px 24px;
+    position: relative;
+    min-width: 815px;
 }
-#block_element {
-    background-color: #fff;
-    color: #000000;
-    display: block;
-    height: 3em;
+
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background: #EDEDED;
+    color: #333;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: normal;
+    height: 100%;
+    margin: 0;
+    padding: 0;
     text-decoration: none;
-    text-align: center;
-    font-size: large;
-    border: 1px solid #b5b5b5;
-    line-height: 3em;
 }
-.time_icon {
-    display: block;
-    height: 3em;
-    padding: 3px;
+
+div {
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+}
+a.link:hover{
+    text-decoration: underline;
+}
+.test-explorer-name-block {
+    margin-top: 12px;
+    display: inline-block;
+}
+
+a.test-explorer-link {
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 18px;
+    color: #333;
+}
+
+a.link {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+a.login-link:hover {
+    color: #ffffff;
+}
+
+a.login-link {
+    color: #ffffff;
+}
+
+.mainpage {
+    min-width: 800px;
+}
+
+.log-in-box {
+    float: right;
+    display: inline-block;
+    cursor: pointer;
+    margin-left: 30px;
+    padding-top: 7px;
+    height: 40px;
     vertical-align: middle;
 }
-.log-out-and-in-button{
-    font-size: 1.2em;
+
+.user-name {
+    border: 1px solid;
+    border-color: #000000;
+    display: inline-block;
+    color: #333;
+    background-color: #ffffff;
+    padding: 5px 15px 5px 15px;
+}
+
+.login-bottom {
+    margin-left: 10px;
+}
+
+a.login-bottom:hover {
+    color: #000000;
+}
+
+.no-element-message {
+    text-align: center;
+    border: 1px solid;
+    width: 500px;
+    height: 150px;
+    background-color: #FAFAFA;
+    margin: auto;
+    margin-top: 30px;
+    font-size: 22px;
+    padding-top: 100px;
+    line-height: 24px;
+}
+
+.login_or_registr_box {
+    background-color: #FAFAFA;
+    border: 1px solid;
+    width: 500px;
+    margin: auto;
+    margin-top: 30px;
+
+}
+
+.block-element {
+    margin: auto;
+    width: 700px;
+    height: 43px;
+    background-color: #FAFAFA;
+    border: 1px solid;
+    margin-bottom: 10px;
+    padding-top: 20px;
+}
+
+.naming-block {
+    width: 700px;
+    text-align: center;
+    margin: auto;
+}
+
+.add_new_element {
+    display: inline;
+    border: 2px solid;
+    font-size: 21px;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+    color: red;
+}
+
+.hided {
+    display: none;
+}
+
+.admin_link {
+    color: red;
+}
+
+.create_new {
+    text-align: center;
+    background-color: #FAFAFA;
+    border: 1px solid;
+    width: 500px;
+    margin: 30px auto;
+    padding: 5px;
+}
+
+.field-input-section-name {
+    padding: 10px;
+    font-size: 16px;
+}
+
+.field-input-test_edit {
+    padding: 10px;
+    font-size: 16px;
+}
+
+.form_element {
+    margin: 10px;
+    width: 100%;
+}
+
+
+/*---------------MODAL------------------*/
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    top: 0;
+    left: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 540px; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.add_question_link, .add_variant_link{
+    color: #439b00;
+}
+.question_name{
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.question_block{
+    width: 70%;
+    height: auto;
+    max-height: 150px;
+    padding: 10px;
+    overflow: auto;
 }
