@@ -225,3 +225,17 @@ a.login-bottom:hover {
     text-decoration: none;
     cursor: pointer;
 }
+.add_question_link, .add_variant_link{
+    color: #439b00;
+}
+.question_name{
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.question_block{
+    width: 70%;
+    height: auto;
+    max-height: 150px;
+    padding: 10px;
+    overflow: auto;
+}

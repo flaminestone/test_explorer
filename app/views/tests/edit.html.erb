@@ -1,136 +1,121 @@
-<div class="create_new">
-  <%= form_for([@section, @test], :html => {:class => "form-horizontal"}) do |f| %>
-      <div class="form_element">
-        <div style="  text-align: center;font-size: 22px;">
-          Edit test
-        </div>
-      </div>
-      <div class="form_element">
-        <%= f.text_field :name, class: "field-input-section-name", placeholder: "Test name", autofocus: true %>
-      </div>
-      <div class="form_element">
-        <%= f.text_field :time_out, class: "field-input-section-name", placeholder: "Time out" %>
-      </div>
-
-      <div class="form_element">
-        <div class="edit-test-control">
-          <%= f.check_box :come_back, :class => "comeback" %>
-          <label>Opportunity to return</label>
-        </div>
-      </div>
-      <div class="form_element">
-        <%= f.submit :class => "create_new_section" %>
-      </div>
-  <% end %>
+<div class="naming-block">
+  <%= button_to '+', new_section_test_path(@section), :class => 'hided', id: 'add_new_element_selector' %>
+  <h1>Question
+    <div class="add_new_element" onclick="CreateQuestion()" id="myBtn" style="cursor: pointer;">+</div>
+  </h1>
 </div>
 
-<div class="create_new">
-  <div class="form_element">
-    <div style="  text-align: center;font-size: 22px;">
-      Add new question
+<% @questions.each do |question| %>
+    <div class="block-element question_block">
+      <a class="link" data-toggle="modal" data-target="#myModal<%= question.id %>">
+        <span class="add_variant_link" style="cursor: pointer">Add answer</span>
+      </a>
+      <a class="link" data-toggle="modal" data-target="#myModaleditquestionname<%= question.id %>">
+        <span class="admin_link" style="cursor: pointer">Edit</span>
+      </a>
+      <a data-confirm="Are you sure?" class="link" rel="nofollow" data-method="delete" href=<%= question_path(question) %>>
+        <span class="admin_link" style="cursor: pointer">Delete</span>
+      </a>
+      <span class="section-data question_name"><%= question.name %></span>
     </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <%= render "questions/form" %>
-    </div>
-  </div>
-</div>
 
 
-<div class="row">
-  <div class="panel panel-default">
-    <div class="panel-heading">All questions</div>
-    <div class="panel-body">
-      <% @questions.each do |question| %>
-          <div class="row">
-            <div class="col-xs-12">
-              <b><%= question.name %></b>
-              <a class="link" data-toggle="modal" data-target="#myModaleditquestionname<%= question.id %>">
-                <span class="admin_link" style="cursor: pointer; padding-left: 10px">Edit question</span>
-              </a>
 
-              <a class="link" data-toggle="modal" data-target="#myModal<%= question.id %>">
-                <span class="admin_link" style="cursor: pointer; padding-left: 10px">Add answer</span>
-              </a>
-              <!-- Modal -->
-              <div class="modal fade" id="myModal<%= question.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span></button>
-                      <h4 class="modal-title" id="myModalLabel">Add new variant</h4>
+        <!-- Modal1 -->
+        <div class="modal fade" id="myModal<%= question.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <div class="create_new">
+                <div style="text-align: center;font-size: 22px;">
+                 Add new answer</div>
+              <div class="modal-body">
+                <%= form_for [question, @variant] do |f| %>
+                    <div class="form_element">
+                      <%= f.text_field :name, class: "field-input-section-name", :placeholder => "Variant of answer" %>
                     </div>
-                    <div class="modal-body">
-                      <%= form_for [question, @variant] do |f| %>
-                          <div class="form-group">
-                            <%= f.text_field :name, class: "form-control", :placeholder => "Variant of answer" %>
-                          </div>
-                          <div class="form-group">
-                            <label>
-                              <%= f.check_box :answer %> It is a true variant
-                            </label>
-                          </div>
-                          <div class="form-group">
-                            <label>
-                              <%= f.file_field :avatar, :class => "input-file" %>
-                            </label>
-                          </div>
-                          <div class="modal-footer">
-                            <%= f.submit :class => "update_test" %>
-                          </div>
-                      <% end %>
+                        <%= f.check_box :answer %> It is a true variant
+                    <div class="form_element">
+                        <%= f.file_field :avatar, :class => "input-file" %>
                     </div>
-                  </div>
-                </div>
+                      <%= f.submit :class => "create_new_section" %>
+                <% end %>
               </div>
-              <a data-confirm="Are you sure?" class="link" rel="nofollow" data-method="delete" href=<%= question_path(question) %>>
-                <span class="admin_link" style="cursor: pointer; padding-left: 10px">Delete question</span>
-              </a>
-              <div class="modal fade" id="myModaleditquestionname<%= question.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span></button>
-                      <h4 class="modal-title" id="myModalLabel">Edit question name</h4>
-                    </div>
-                    <div class="modal-body">
-                      <%= form_for([@test, question]) do |f| %>
-                          <div class="form-group">
-                            <%= f.text_field :name, class: "form-control edit-test-control", :placeholder => "Question name" %>
-                          </div>
-                          <input type="submit" name="commit" value="Update Question" class="update_test" style="margin-left: 180px">
-                      <% end %>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
-          <div class="row">
-            <% question.variants.each do |current_variant| %>
-                <div class="col-md-3">
-                  <div class="thumbnail <%= "true-variant" if current_variant.answer %>">
-                    <a data-confirm="Are you sure?" class="link" style="float: right" rel="nofollow" data-method="delete" href=<%= "/questions/#{question.id}/variants/#{current_variant.id}" %>>
+        </div>
+      <!-- Modal2 -->
+
+      <div class="modal fade" id="myModaleditquestionname<%= question.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <div class="create_new">
+                <div style="text-align: center;font-size: 22px;">
+                  Edit question name</div>
+              <div class="modal-body">
+                <%= form_for([@test, question]) do |f| %>
+                    <div class="form_element">
+                      <%= f.text_field :name, class: "field-input-section-name", :placeholder => "Question name" %>
+                    </div>
+                    <div class="form_element">
+                      <input type="submit" name="commit" value="Update Question" class="create_new_section">
+                    </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          </div>
+
+      </div>
+      <% question.variants.each do |current_variant| %>
+          <div class="col-md-3">
+            <div class="thumbnail <%= "true-variant" if current_variant.answer %>">
+              <a data-confirm="Are you sure?" class="link" style="float: right" rel="nofollow" data-method="delete" href=<%= "/questions/#{question.id}/variants/#{current_variant.id}" %>>
                         <span class="admin_link" aria-hidden="true">
                           Delete
                         </span></a>
-                    <div style="background: url(<%= current_variant.avatar.url %>) 100% 100% no-repeat;
-                        background-size: contain;
-                        background-position: 50% 50%; height: 100px;">
-                    </div>
-                    <div class="caption">
-                      <p style="text-align: center; word-wrap: break-word" class="result-describe-edit">
-                        <%= current_variant.name %>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-            <% end %>
+              <div style="background: url(<%= current_variant.avatar.url %>) 100% 100% no-repeat;
+                  background-size: contain;
+                  background-position: 50% 50%; height: 100px;">
+              </div>
+              <div class="caption">
+                <p style="text-align: center; word-wrap: break-word" class="result-describe-edit">
+                  <%= current_variant.name %>
+                </p>
+              </div>
+            </div>
           </div>
       <% end %>
+<% end %>
+
+
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div class="create_new">
+        <div style="text-align: center;font-size: 22px;">
+          Add new question
+        </div>
+          <%= render "questions/form" %>
     </div>
   </div>
 </div>
+<script>
+    function CreateQuestion() {
+        var selector = "#myModal";
+        $(selector).css('display', 'block');
+        console.log($(selector));
+    }
+
+    $(".close").click(function () {
+        $(".modal").css("display", "none");
+    });
+
+    window.onclick = function (event) {
+        if ($(event.target).hasClass('modal')) {
+            $("#myModal").css("display", "none");
+        }
+    }
+</script>
