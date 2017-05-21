@@ -19,8 +19,6 @@
       <span class="section-data question_name"><%= question.name %></span>
     </div>
 
-
-
         <!-- Modal1 -->
         <div class="modal fade" id="myModal<%= question.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
@@ -69,25 +67,28 @@
           </div>
 
       </div>
+    <div class="answer_place">
       <% question.variants.each do |current_variant| %>
-          <div class="col-md-3">
-            <div class="thumbnail <%= "true-variant" if current_variant.answer %>">
-              <a data-confirm="Are you sure?" class="link" style="float: right" rel="nofollow" data-method="delete" href=<%= "/questions/#{question.id}/variants/#{current_variant.id}" %>>
+
+          <div class="thumbnail <%= "true-variant" if current_variant.answer %>">
+            <a data-confirm="Are you sure?" class="link" style="float: right" rel="nofollow" data-method="delete" href=<%= "/questions/#{question.id}/variants/#{current_variant.id}" %>>
                         <span class="admin_link" aria-hidden="true">
                           Delete
                         </span></a>
-              <div style="background: url(<%= current_variant.avatar.url %>) 100% 100% no-repeat;
-                  background-size: contain;
-                  background-position: 50% 50%; height: 100px;">
-              </div>
-              <div class="caption">
-                <p style="text-align: center; word-wrap: break-word" class="result-describe-edit">
-                  <%= current_variant.name %>
-                </p>
-              </div>
+            <div class="image_for_answer" style="background: url(<%= current_variant.avatar.url %>) 100% 100% no-repeat;
+                background-size: contain;
+                background-position: 50% 50%; height: 200px;">
+
+            </div>
+            <div>
+              <p style="text-align: center; " class="result-describe-edit">
+                <%= current_variant.name %>
+              </p>
             </div>
           </div>
+
       <% end %>
+    </div>
 <% end %>
 
 

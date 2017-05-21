@@ -1,110 +1,20 @@
-// Place all the styles related to the Tests controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-html {
-  overflow-y: scroll;
-}
-
-h2 {
-  margin: 0;
-  color: #666;
-  padding-top: 90px;
-  font-size: 52px;
-  font-family: "trebuchet ms", sans-serif;
-}
-
-.item {
-  text-align: center;
-}
-
-.carousel2 {
-  margin: 20px 0;
-}
-
-.control-buttons {
-  text-align: center;
-}
-
-.examplecarusel {
-  margin: 20px;
-}
-.result-item {
-  width: 539px;
-  height: 500px;
-}
-.result-describe{
-  height: 150px
-}
-
-.next-question {
-  font-size: 75px;
-}
-
-.btn {
-  margin-top: 20px;
-}
-.finish-button {
-  float:left;
-  margin-left: 25px;
-}
-
-.question-button {
-  float:right;
-  margin-right: 52px;
-}
-
-.edit-test-control{
-    margin-top: 10px;
-}
-.edit-test-control-checkbox{
-    margin-top: 25px;
-}
-.edit-test-controls-update{
-  margin-left: 15px;
-}
-
-.modal-ok-button{
-  margin-top: 0px;
-}
-
-.result-describe-edit {
-  height: 75px;
-  overflow-x: hidden;
-}
-.true-variant{
+.true-variant {
   background-color: rgb(204, 255, 204);
 }
-.delete-result-button{
-  position: absolute;
-  right: 20px;
-  height: 15px;
+.answer_place {
+  display: block;
+  margin: auto;
+  width: 70%;
+  padding-bottom: 15px;
 }
-.update_test{
-  border: 1px solid;
-  border-color: #666;
+
+.thumbnail {
   display: inline-block;
-  color: #333;
-  background-color: #ffffff;
-  padding: 5px 50px 5px 50px;
-  margin-left: 90px;
-  margin-top: 23px;
+  width: 261px;
+  height: 270px;
+  overflow: auto;
+  border: 1px solid;
 }
-.update_test{
-  border: 1px solid;
-  border-color: #666;
-  display: inline-block;
-  color: #333;
-  background-color: #ffffff;
-  padding: 5px 50px 5px 50px;
-  margin-left: 90px;
-  margin-top: 23px;
-}
-.create_question{
-  border: 1px solid;
-  border-color: #666;
-  display: inline-block;
-  color: #333;
-  background-color: #ffffff;
-  padding: 5px 50px 5px 50px;
-  margin-top: 23px;
+.image_for_answer{
+  margin-top: 10px;
 }
