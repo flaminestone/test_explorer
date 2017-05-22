@@ -151,7 +151,6 @@
                 // Individual LI dimensions
                 li.css({
                     width: li.width(),
-                    height: li.height()
                 });
 
                 // Size of the entire UL. Including hidden and visible elements

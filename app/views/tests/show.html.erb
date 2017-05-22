@@ -1,8 +1,8 @@
 <%= form_tag("/consider", method: "post") do %>
-        <div class="question-button">
+        <div class="question-buttons">
           <button class="prev">&lt;&lt;</button>
           <button class="next">&gt;&gt;</button>
-          <button type="submit" name="commit" value="finish" class="btn btn-default finish-button">
+          <button type="submit" name="commit" value="finish" class="finish-button">
             <span style="font-size: large">Finish</span>
           </button>
         </div>
@@ -10,21 +10,25 @@
         <ul>
           <% @questions.each_with_index do |question, i| %>
               <li>
-                  <p><h4>Question <%= i + 1 %> (<%= @questions.size %>): <b><%= question.name %></b></h4></p>
-                  <% question.variants.each do |current_variant| %>
-                      <div class="thumbnail" id="<%= "[questions]#{question.id}[#{current_variant.id}]".to_sym %>">
-                        <%= check_box_tag("[questions]#{question.id}[#{current_variant.id}]".to_sym, '0', false, :class => 'checkbox hidden') %>
+                <div class="question-name">
+                 <p>Question <%= i + 1 %> (<%= @questions.size %>): <b><%= question.name %></b></p>
+                </div>
+                <div class="answers">
+                <% question.variants.each do |current_variant| %>
+                      <div class="current_answer">
+                        <%= check_box_tag("[questions]#{question.id}[#{current_variant.id}]".to_sym, '0', false, :class => 'checkbox hided') %>
 
-                        <div class="result-item" style="background: url(<%= current_variant.avatar.url %>) 100% 100% no-repeat;
-                            background-size: contain;
-                            background-position: 50% 50%; cursor:pointer;">
-
-                        </div>
-                        <div class="caption result-describe">
-                          <h3><%= current_variant.name %></h3>
-                        </div>
+                      <div class="big-answer-image" id="<%= "[questions]#{question.id}[#{current_variant.id}]".to_sym %>" style="background: url(<%= current_variant.avatar.url %>) 100% 100% no-repeat;
+                          background-size: contain;
+                          background-position: 50% 50%; cursor:pointer;">
                       </div>
-                  <% end %>
+                      <div class="result-describe">
+                        <h3><%= current_variant.name %></h3>
+                      </div>
+                      </div>
+
+                <% end %>
+                </div>
               </li>
           <% end %>
         </ul>
@@ -41,8 +45,7 @@
         });
     });
 
-    $(".thumbnail").on('click', function () {
-        console.log('clock');
+    $(".current_answer").on('click', function () {
         if ($(this).children('.checkbox').is(":checked")) {
             $(this).find('input[type=checkbox]').prop('checked', false);
             this.style.backgroundColor = "rgb(255, 255, 255)"
