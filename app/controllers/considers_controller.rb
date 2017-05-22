@@ -37,9 +37,10 @@ ___________________¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶"
       render text: "Сессия потеряна. Вернитесь назад"
       return
     end
-    Student.all.find(session[:current_user_id]).update(:result => general_result.to_s)
+    @current_student = Student.all.find(session[:current_user_id])
+    @current_student.update(:result => general_result.to_s)
+    @result = (100.0 / possible_result) * general_result
     session[:current_user_id] = nil
-    render text: "#{general_result} из #{ possible_result }. It is a #{(100.0 / possible_result) * general_result}"
   end
 
   private
