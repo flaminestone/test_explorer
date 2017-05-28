@@ -1,10 +1,12 @@
 class StudentsController < ApplicationController
+  before_filter :authenticate_user!
+
   def new
     @student = Student.new
   end
 
   def create
-    @student  = Student.new(students_params)
+    @student = Student.new(students_params)
     respond_to do |format|
       if @student.save
         format.html { redirect_to section_test_path(students_params[:section_result_name], students_params[:test_result_name])}
@@ -18,5 +20,13 @@ class StudentsController < ApplicationController
 
   def students_params
     params.require(:student).permit(:name, :group, :test_result_name, :section_result_name)
+  end
+
+  def groups
+    @groups = Student.pluck(:group)
+  end
+
+  def group_show
+
   end
 end
