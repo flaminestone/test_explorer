@@ -20,7 +20,9 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'sections#index'
   post '/sections/new' => 'sections#new'
-  post '/sections/:id/tests/new' => 'tests#new'
+  post '/groups' => 'students#groups'
+  get '/groups' => 'students#groups'
+  get '/groups_show' => 'students#groups_show'
   post '/sections/:id/tests/:id/edit' => 'tests#edit'
   post 'block/:id' => 'sections#block'
   post 'unblock/:id' => 'sections#unblock'
