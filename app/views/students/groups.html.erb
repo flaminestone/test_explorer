@@ -1,7 +1,8 @@
 <% @groups.each do |group_name|  %>
     <div class="block-element">
       <div class="section_item" style="align-self: center">
-        <span class="section-data"><%= group_name %> </span>
+        <a class="section-data" href="#"><%= group_name %></a>
+        <%= link_to "group_show", students_path(group_name: group_name) %>
       </div>
     </div>
 <% end  %>

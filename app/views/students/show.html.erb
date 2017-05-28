@@ -1,0 +1,15 @@
+
+<% @data.each do |current_data|  %>
+    <div class="block-element">
+      <div class="section_item" style="align-self: center">
+        <% if @name.nil? %>
+            <a class="section-data"><%= current_data.name %></a>
+            <span class="section-data" style="float: right;   margin-right: 15px;"><%= current_data.result %></span>
+            <span class="section-data" style="float: right;   margin-right: 15px;"><%= current_data.created_at %></span>
+      <% else %>
+            <a class="section-data" href="#"><%= current_data %></a>
+            <%= link_to @name, params.merge({@key => current_data}) %>
+      <% end %>
+      </div>
+    </div>
+<% end  %>
