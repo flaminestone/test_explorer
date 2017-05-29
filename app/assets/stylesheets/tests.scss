@@ -7,7 +7,6 @@
   width: 70%;
   padding-bottom: 15px;
 }
-
 .thumbnail {
   display: inline-block;
   width: 261px;
@@ -38,6 +37,9 @@
 }
 .question-name, .answers{
   margin: 10px 70px 10px 120px;
+}
+.answers{
+  width: 100%;
 }
 .big-answer-image{
   display: inline-block;

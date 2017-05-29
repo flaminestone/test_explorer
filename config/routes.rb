@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get '/groups' => 'students#groups'
   get '/groups_show' => 'students#groups_show'
   post '/sections/:id/tests/:id/edit' => 'tests#edit'
+  post '/sections/:id/tests/new' => 'tests#new'
   post 'block/:id' => 'sections#block'
   post 'unblock/:id' => 'sections#unblock'
   post '/consider' => 'considers#calculate_result'

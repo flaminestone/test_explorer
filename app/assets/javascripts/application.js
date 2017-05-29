@@ -150,7 +150,7 @@
                 // May be applicable for other types of LI children if their dimensions are explicitly specified
                 // Individual LI dimensions
                 li.css({
-                    width: li.width(),
+                    width: li.width()
                 });
 
                 // Size of the entire UL. Including hidden and visible elements
