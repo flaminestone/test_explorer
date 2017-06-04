@@ -9,11 +9,11 @@ class StudentsController < ApplicationController
     @student = Student.new(students_params)
     respond_to do |format|
       if @student.save
-        format.html { redirect_to section_test_path(students_params[:section_result_name], students_params[:test_result_name])}
+        format.html {redirect_to section_test_path(students_params[:section_result_name], students_params[:test_result_name])}
         session[:current_user_id] = @student.id
       else
-        format.html { render :new }
-        format.json { render json: @student.errors, status: :unprocessable_entity }
+        format.html {render :new}
+        format.json {render json: @student.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -29,7 +29,7 @@ class StudentsController < ApplicationController
   def show
     if params['section_result_name'].nil?
       @data = Student.where(:group => params['group_name']).pluck(:section_result_name).uniq
-      @data = Section.all.where(id: @data).pluck(:name  )
+      @data = Section.all.where(id: @data).pluck(:name)
       @key = :section_result_name
       @name = 'Sections'
     elsif params['test_result_name'].nil?

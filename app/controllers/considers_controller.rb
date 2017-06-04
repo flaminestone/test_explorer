@@ -7,12 +7,12 @@ class ConsidersController < ApplicationController
     general_result = 0
     results = params.require(:questions) # "id_question"=>{"answer_1" => "1", "answer_1" => "1", "answer_3" => "1"} ect
     results.keys.each do |current_question_id| # проходим по всем вопросам в тесте, на которые дали ответы
-      result = 0          # result for current question
+      result = 0 # result for current question
       price = get_price_for_one_result(current_question_id) # get price for answer for this question
       true_variants = get_true_variants(current_question_id) # get array of ids true variants for this question
       results[current_question_id].keys.each do |current_variant|
         if true_variants.include? current_variant.to_i # check current variant. Its true?
-          result += price   # add price to result if true
+          result += price # add price to result if true
         else
           result -= price
         end

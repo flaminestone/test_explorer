@@ -30,10 +30,10 @@ class SectionsController < ApplicationController
     @section = Section.new(section_params)
     respond_to do |format|
       if @section.save
-        format.html { redirect_to sections_path, notice: 'Section was successfully created.' }
+        format.html {redirect_to sections_path, notice: 'Section was successfully created.'}
       else
-        format.html { render :new }
-        format.json { render json: @section.errors, status: :unprocessable_entity }
+        format.html {render :new}
+        format.json {render json: @section.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -43,11 +43,11 @@ class SectionsController < ApplicationController
   def update
     respond_to do |format|
       if @section.update(section_params)
-        format.html { redirect_to @section, notice: 'Section was successfully updated.' }
-        format.json { render :show, status: :ok, location: @section }
+        format.html {redirect_to @section, notice: 'Section was successfully updated.'}
+        format.json {render :show, status: :ok, location: @section}
       else
-        format.html { render :edit }
-        format.json { render json: @section.errors, status: :unprocessable_entity }
+        format.html {render :edit}
+        format.json {render json: @section.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -58,13 +58,13 @@ class SectionsController < ApplicationController
     if @section.blocking
       @section.destroy
       respond_to do |format|
-        format.html { redirect_to root_url, notice: 'Section was successfully destroyed.' }
-        format.json { head :no_content }
+        format.html {redirect_to root_url, notice: 'Section was successfully destroyed.'}
+        format.json {head :no_content}
       end
     elsif !@section.blocking
       respond_to do |format|
-        format.html { redirect_to root_url, notice: 'Section was not destroyed. Blocking it and destroy again' }
-        format.json { head :no_content }
+        format.html {redirect_to root_url, notice: 'Section was not destroyed. Blocking it and destroy again'}
+        format.json {head :no_content}
       end
     end
   end
@@ -72,16 +72,16 @@ class SectionsController < ApplicationController
   def block
     set_section.update(blocking: true)
     respond_to do |format|
-      format.html { redirect_to root_url, notice: "#{ @section.name } section was successfully blocked." }
-      format.json { head :no_content }
+      format.html {redirect_to root_url, notice: "#{ @section.name } section was successfully blocked."}
+      format.json {head :no_content}
     end
   end
 
   def unblock
     set_section.update(blocking: false)
     respond_to do |format|
-      format.html { redirect_to root_url, notice: "#{ @section.name } section was successfully blocked." }
-      format.json { head :no_content }
+      format.html {redirect_to root_url, notice: "#{ @section.name } section was successfully blocked."}
+      format.json {head :no_content}
     end
   end
 

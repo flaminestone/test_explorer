@@ -32,11 +32,11 @@ class VariantsController < ApplicationController
     respond_to do |format|
       if @variant.save
         get_question.variants << @variant
-        format.html { redirect_to edit_section_test_path(get_section, get_test), notice: 'Variant was successfully created.' }
-        format.json { render :show, status: :created, location: @variant }
+        format.html {redirect_to edit_section_test_path(get_section, get_test), notice: 'Variant was successfully created.'}
+        format.json {render :show, status: :created, location: @variant}
       else
-        format.html { render :new }
-        format.json { render json: @variant.errors, status: :unprocessable_entity }
+        format.html {render :new}
+        format.json {render json: @variant.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -46,11 +46,11 @@ class VariantsController < ApplicationController
   def update
     respond_to do |format|
       if @variant.update(variant_params)
-        format.html { redirect_to edit_section_test_path(get_section, get_test), notice: 'Variant was successfully updated.' }
-        format.json { render :show, status: :ok, location: @variant }
+        format.html {redirect_to edit_section_test_path(get_section, get_test), notice: 'Variant was successfully updated.'}
+        format.json {render :show, status: :ok, location: @variant}
       else
-        format.html { render :edit }
-        format.json { render json: @variant.errors, status: :unprocessable_entity }
+        format.html {render :edit}
+        format.json {render json: @variant.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -60,8 +60,8 @@ class VariantsController < ApplicationController
   def destroy
     @variant.destroy
     respond_to do |format|
-      format.html { redirect_to edit_section_test_path(get_section, get_test), notice: 'Variant was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html {redirect_to edit_section_test_path(get_section, get_test), notice: 'Variant was successfully destroyed.'}
+      format.json {head :no_content}
     end
   end
 
