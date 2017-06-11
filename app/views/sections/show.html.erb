@@ -38,12 +38,6 @@
                 &#8855;
             <% end %>
           </span>
-            <span class="time_out_icon">&#9200;<%= test.time_out %>
-              <% if test.time_out.nil? %>
-        &#8734;
-    <% end %>
-              min
-  </span>
           </div>
         </div>
         </div>
@@ -61,10 +55,6 @@
                   <div class="form_element">
                     <%= f.text_field :name, class: "field-input-section-name", placeholder: "Test name", autofocus: true %>
                   </div>
-                  <div class="form_element">
-                    <%= f.text_field :time_out, class: "field-input-section-name", placeholder: "Time out" %>
-                  </div>
-
                   <div class="form_element">
                     <div class="edit-test-control">
                       <%= f.check_box :come_back, :class => "comeback" %>

@@ -84,7 +84,7 @@ class TestsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def test_params
-    params.require(:test).permit(:name, :come_back, :time_out)
+    params.require(:test).permit(:name, :come_back)
   end
 
   def get_section
