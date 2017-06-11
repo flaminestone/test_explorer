@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:show, :index, :new]
 
   def new
     @student = Student.new
