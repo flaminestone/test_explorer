@@ -129,6 +129,7 @@ a.login-bottom:hover {
 }
 .variant_selection{
     width: 50px;
+    background-color: #FAFAFA;
 }
 .block-element {
     margin: auto;
