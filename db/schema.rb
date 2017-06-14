@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(version: 20160526233024) do
 
   create_table "tests", force: :cascade do |t|
     t.string   "name"
+    t.integer  "variant"
     t.integer  "section_id"
-    t.integer  "time_out"
     t.boolean  "come_back",  default: true
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false

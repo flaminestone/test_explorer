@@ -10,83 +10,112 @@
     <% end %>
   </div>
   <div class="row">
-    <% @tests.each do |test| %>
+    <% @tests.each_pair do |test| %>
         <div class="block-element">
           <div class="section_item">
-            <a class="link" href="<%= students_new_path(:section => @section.id, :test => test.id) %>">
+            <a class="link test_run" value="<%= {test[0] => test[1]}.to_json %>"
+               href="#">
                 <span class="section-data">
-                  <%= test.name %>
+                  <%= test[0] %>
                   <% if user_signed_in? %>
-                      <a class="link" href="<%= edit_section_test_path(@section, test)%>">
+                      <a class="link add_question_button" href="#" value="<%= {test[0] => test[1]}.to_json %>">
                         <span class="add_question_link">Add Question</span>
                       </a>
-                      <a class="link myBtn" id="myBtn" value="<%= test.id %>" style="cursor: pointer;">
+
+                      <a class="link myBtn" id="myBtn" value="<%= {test[0] => test[1]}.to_json %>">
                         <span class="admin_link">Edit</span>
                       </a>
-                      <a data-confirm="Are you sure?" class="link" rel="nofollow" data-method="delete" href=<%= "#{section_path(@section)}/tests/#{test.id}" %>>
+
+                      <a class="link delete_button" value="<%= {test[0] => test[1]}.to_json %>" >
                         <span class="admin_link">Delete</span>
                      </a>
                    <% end %>
                   <span class="badge count-of-tests">
-                  <%= test.questions.count %></span>
+                  <%= test[1][:questions] %></span>
                 </span>
             </a>
+            <%= select_tag test[0], options_for_select(test[1][:variants].keys.map(&:to_s)), class: 'variant_selection', name: test[0] %>
             <span class="come_back_icon">
-            <% if test.come_back %>
+            <% if test[1][:come_back] %>
                 &#9668;
             <% else %>
                 &#8855;
             <% end %>
           </span>
-            <span class="time_out_icon">&#9200;<%= test.time_out %>
-              <% if test.time_out.nil? %>
-        &#8734;
-    <% end %>
-              min
-  </span>
           </div>
         </div>
-        </div>
-        <div id="myModal" value="<%= test.id %>" class="modal">
-          <!-- Modal content -->
-          <div class="modal-content">
-            <span class="close">&times;</span>
-            <div class="create_new">
-              <%= form_for([@section, test], :html => {:class => "form-horizontal"}) do |f| %>
-                  <div class="form_element">
-                    <div style="text-align: center;font-size: 22px;">
-                      Edit test
-                    </div>
-                  </div>
-                  <div class="form_element">
-                    <%= f.text_field :name, class: "field-input-section-name", placeholder: "Test name", autofocus: true %>
-                  </div>
-                  <div class="form_element">
-                    <%= f.text_field :time_out, class: "field-input-section-name", placeholder: "Time out" %>
-                  </div>
-
-                  <div class="form_element">
-                    <div class="edit-test-control">
-                      <%= f.check_box :come_back, :class => "comeback" %>
-                      <label>Opportunity to return</label>
-                    </div>
-                  </div>
-                  <div class="form_element">
-                    <%= f.submit :class => "create_new_section" %>
-                  </div>
-              <% end %>
-            </div>
-          </div>
         </div>
     <% end %>
     </div>
 </div>
 
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">×</span>
+    <div class="create_new">
+      <form id="edit_form" class="form-horizontal" accept-charset="UTF-8" method="post">
+        <input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden">
+        <div class="form_element">
+          <div style="text-align: center;font-size: 22px;">
+            Edit test
+          </div>
+        </div>
+        <div class="form_element">
+          <input class="field-input-section-name" placeholder="Test name" autofocus="autofocus" type="text" value="Name" name="test[name]" id="test_name">
+        </div>
+        <div class="form_element">
+          <div class="edit-test-control">
+            <input name="test[come_back]" type="hidden" value="0"><input class="comeback" type="checkbox" value="1" checked="checked" name="test[come_back]" id="test_come_back">
+            <label>Opportunity to return</label>
+          </div>
+        </div>
+        <div class="form_element">
+          <input type="submit" name="commit" value="Update Test" class="create_new_section">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 <script>
     $(".myBtn").click(function () {
-        var selector = ".modal[value=" + $(this).attr('value') + "]";
-        $(selector).css('display', 'block');
-        console.log($(selector));
+        console.log($(this));
+
+        test_data = JSON.parse($(this).attr('value'));
+        variant = GetVariant(Object.keys(test_data)[0]);
+        id = Object.values(test_data)[0]['variants'][variant];
+        $('#edit_form')[0].setAttribute('action',"/sections/" + <%= @section.id %> + "/tests/" + id);
+        $('#test_name')[0].setAttribute('value', Object.keys(test_data)[0]);
+        $('.modal').css('display', 'block');
+    });
+
+    $(".delete_button").click(function () {
+        if (confirm("Are you sure?")) {
+            test_data = JSON.parse($(this).attr('value'));
+            variant = GetVariant(Object.keys(test_data)[0]);
+            console.log($(this).val());
+            id = Object.values(test_data)[0]['variants'][variant];
+            $(this)[0].setAttribute('href',"/sections/" + <%= @section.id %> + "/tests/" + id);
+            $(this)[0].setAttribute('data-method',"delete");
+        }
+    });
+
+    $(".add_question_button").click(function () {
+      test_data = JSON.parse($(this).attr('value'));
+      variant = GetVariant(Object.keys(test_data)[0]);
+      console.log($(this).val());
+      id = Object.values(test_data)[0]['variants'][variant];
+      $(this)[0].setAttribute('href',"/sections/" + <%= @section.id %> + "/tests/" + id + '/edit');
+    });
+
+    $(".test_run").click(function () {
+        console.log($(this));
+       test_data = JSON.parse($(this).attr('value'));
+       variant = GetVariant(Object.keys(test_data)[0]);
+       console.log($(this).val());
+       id = Object.values(test_data)[0]['variants'][variant];
+        $(this)[0].setAttribute('href',"/students/new?" + "section=" + <%= @section.id %> + "&test=" + id);
     });
 
     $(".close").click(function () {
@@ -97,5 +126,9 @@
         if ($(event.target).hasClass('modal')) {
             $(".modal").css("display", "none");
         }
+    };
+    function GetVariant(id) {
+//        console.log($("[name='" + id + "']")[0].selectedIndex + 1);
+        return ($("[name='" + id + "']")[0].selectedIndex + 1)
     }
 </script>
