@@ -127,7 +127,9 @@ a.login-bottom:hover {
     margin-top: 30px;
 
 }
-
+.variant_selection{
+    width: 50px;
+}
 .block-element {
     margin: auto;
     width: 700px;
@@ -238,4 +240,14 @@ a.login-bottom:hover {
     max-height: 150px;
     padding: 10px;
     overflow: auto;
+}
+.hidden{
+    display: none;
+}
+.link{
+cursor: pointer;
+}
+
+.link:hover{
+    text-decoration: underline;
 }

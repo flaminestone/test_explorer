@@ -1,6 +1,7 @@
 class SectionsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:show, :index]
+  before_filter :authenticate_user!, except: [:show, :index]
   before_action :set_section, only: [:show, :edit, :update, :destroy, :block, :unblock]
+  skip_before_action :verify_authenticity_token
 
   # GET /sections
   # GET /sections.json
@@ -12,7 +13,16 @@ class SectionsController < ApplicationController
   # GET /sections/1.json
   def show
     set_section
-    @tests = @section.tests
+    @tests = {}
+    @section.tests.each do |test|
+      if @tests.has_key?(test.name)
+        @tests[test.name][:variants].merge!({test.variant => test.id})
+      else
+        @tests.merge!({test.name => {variants: {test.variant => test.id},
+                                     questions: test.questions.count,
+                                     come_back: test.come_back, test: test}})
+      end
+    end
   end
 
   # GET /sections/new
