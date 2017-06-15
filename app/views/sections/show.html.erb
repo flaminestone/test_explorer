@@ -30,11 +30,13 @@
                         <span class="admin_link">Delete</span>
                      </a>
                    <% end %>
-                  <span class="badge count-of-tests">
-                  <%= test[1][:questions] %></span>
+                  <span class="badge count-of-tests" value="<%= {test[0] => test[1]}.to_json %>" name=<%= test[0] %>>
+                  <%= test[1][:variants][1][:questions] %>
+                  </span>
                 </span>
             </a>
-            <%= select_tag test[0], options_for_select(test[1][:variants].keys.map(&:to_s)), class: 'variant_selection', name: test[0] %>
+            <%= select_tag test[0], options_for_select(test[1][:variants].keys.map(&:to_s)),
+                           class: 'variant_selection', name: test[0], value: {test[0] => test[1]}.to_json %>
             <span class="come_back_icon">
             <% if test[1][:come_back] %>
                 &#9668;
@@ -79,12 +81,20 @@
 </div>
 
 <script>
-    $(".myBtn").click(function () {
-        console.log($(this));
+  $("select").change(function () {
+//      console.log($(this).attr("name"));
+      test_data = JSON.parse($(this).attr('value'));
+      variant = $("select[name='" + $(this).attr("name") + "']")[0].selectedIndex + 1;
+      console.log(variant);
+      console.log(test_data);
+      console.log(Object.values(test_data)[0]['variants'][variant]['questions']);
+      $(".count-of-tests[name='" +  $(this).attr("name") + "']").text(Object.values(test_data)[0]['variants'][variant]['questions'])
+  });
 
+    $(".myBtn").click(function () {
         test_data = JSON.parse($(this).attr('value'));
         variant = GetVariant(Object.keys(test_data)[0]);
-        id = Object.values(test_data)[0]['variants'][variant];
+        id = Object.values(test_data)[0]['variants'][variant]['id'];
         $('#edit_form')[0].setAttribute('action',"/sections/" + <%= @section.id %> + "/tests/" + id);
         $('#test_name')[0].setAttribute('value', Object.keys(test_data)[0]);
         $('.modal').css('display', 'block');
@@ -95,7 +105,7 @@
             test_data = JSON.parse($(this).attr('value'));
             variant = GetVariant(Object.keys(test_data)[0]);
             console.log($(this).val());
-            id = Object.values(test_data)[0]['variants'][variant];
+            id = Object.values(test_data)[0]['variants'][variant]['id'];
             $(this)[0].setAttribute('href',"/sections/" + <%= @section.id %> + "/tests/" + id);
             $(this)[0].setAttribute('data-method',"delete");
         }
@@ -105,7 +115,7 @@
       test_data = JSON.parse($(this).attr('value'));
       variant = GetVariant(Object.keys(test_data)[0]);
       console.log($(this).val());
-      id = Object.values(test_data)[0]['variants'][variant];
+      id = Object.values(test_data)[0]['variants'][variant]['id'];
       $(this)[0].setAttribute('href',"/sections/" + <%= @section.id %> + "/tests/" + id + '/edit');
     });
 
@@ -114,7 +124,7 @@
        test_data = JSON.parse($(this).attr('value'));
        variant = GetVariant(Object.keys(test_data)[0]);
        console.log($(this).val());
-       id = Object.values(test_data)[0]['variants'][variant];
+       id = Object.values(test_data)[0]['variants'][variant]['id'];
         $(this)[0].setAttribute('href',"/students/new?" + "section=" + <%= @section.id %> + "&test=" + id);
     });
 
@@ -128,7 +138,7 @@
         }
     };
     function GetVariant(id) {
-//        console.log($("[name='" + id + "']")[0].selectedIndex + 1);
-        return ($("[name='" + id + "']")[0].selectedIndex + 1)
+        console.log($("[name='" + id + "']")[0].selectedIndex + 1);
+        return ($("select[name='" + id + "']")[0].selectedIndex + 1)
     }
 </script>
