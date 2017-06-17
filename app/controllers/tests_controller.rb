@@ -51,7 +51,7 @@ class TestsController < ApplicationController
   # PATCH/PUT /tests/1.json
   def update
     respond_to do |format|
-      if @test.update(test_params)
+      if Section.find(params['section_id']).tests.where(name: @test.name).update_all(test_params)
         format.html {redirect_to :back, notice: 'Test was successfully updated.'}
         format.json {render :show, status: :ok, location: @test}
       else

@@ -252,3 +252,6 @@ cursor: pointer;
 .link:hover{
     text-decoration: underline;
 }
+.margin_zero{
+    margin-top: 0;
+}

@@ -16,10 +16,9 @@ class SectionsController < ApplicationController
     @tests = {}
     @section.tests.each do |test|
       if @tests.has_key?(test.name)
-        @tests[test.name][:variants].merge!({test.variant => test.id})
+        @tests[test.name][:variants].merge!({test.variant => {id: test.id, questions: test.questions.count}})
       else
-        @tests.merge!({test.name => {variants: {test.variant => test.id},
-                                     questions: test.questions.count,
+        @tests.merge!({test.name => {variants: {test.variant => {id: test.id, questions: test.questions.count}},
                                      come_back: test.come_back, test: test}})
       end
     end
