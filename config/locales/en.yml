@@ -20,4 +20,40 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  sections: "Sections"
+  groups: "Groups"
+  signed_in_as: "Signed in as"
+  logout: "Logout"
+  login: "Login"
+  login_for_Theater: "Login for Theater"
+  please_sign_up: "Please sign up"
+  email: "Email address"
+  password: "Password"
+  password_confirm: "Password Confirm"
+  secret: "Secret"
+  sign_up: "Sign up"
+  sign_in: "Sign in"
+  press_for_login: "Press to her for login if you have account"
+  press_for_registration: "Press to her if you have not account"
+  create_section: "Create Section"
+  section_name: 'Section name'
+  tests: 'Tests'
+  add_question: 'Add Question'
+  edit: 'Edit'
+  edit_test: 'Edit test'
+  delete: 'Delete'
+  to_return: 'Opportunity to return'
+  groups: 'Groups'
+  student_name: 'Student name'
+  group: "Group"
+  create_test: "Create Test"
+  test_name: "Test name"
+  question: "Question"
+  add_answer: "Add answer"
+  true_variant: " It is a true variant"
+  edit_question_name: "Edit question name"
+  question_name: "Question name"
+  update_question_name: "Update Question"
+  you_sure: "Are you sure?"
+  add_new_question: "Add new question"
+  finish: "Finish"

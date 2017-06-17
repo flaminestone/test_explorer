@@ -3,13 +3,14 @@
       <div class="form_element" style="padding-bottom: 5px;">
         <div style="text-align: center;font-size: 22px;">
           Please sign up
+          <%=t :sign_up %>
         </div>
       </div>
       <div class="form_element">
-        <%= f.text_field :name, autofocus: true, :class => 'field-input-section-name', :placeholder => 'Student name', :required => "" %>
+        <%= f.text_field :name, autofocus: true, :class => 'field-input-section-name', :placeholder => t(:student_name), :required => "" %>
       </div>
       <div class="form_element">
-        <%= f.text_field :group, autofocus: true, :class => 'field-input-section-name', :placeholder => "Group", :required => "" %>
+        <%= f.text_field :group, autofocus: true, :class => 'field-input-section-name', :placeholder => t(:group), :required => "" %>
       </div>
       <%= f.hidden_field :section_result_name, :value => params[:section] %>
       <%= f.hidden_field :test_result_name, :value => params[:test] %>

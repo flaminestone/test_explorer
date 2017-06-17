@@ -31,12 +31,12 @@ class StudentsController < ApplicationController
       @data = Student.where(:group => params['group_name']).pluck(:section_result_name).uniq
       @data = Section.all.where(id: @data).pluck(:name)
       @key = :section_result_name
-      @name = 'Sections'
+      @name = t(:sections)
     elsif params['test_result_name'].nil?
       @data = Student.where(:group => params['group_name'], :section_result_name => Section.find_by_name(params['section_result_name']).id).pluck(:test_result_name).uniq
       @data = Test.all.where(id: @data).pluck(:name)
       @key = :test_result_name
-      @name = 'Tests'
+      @name = t(:tests)
     else
       Student.where(result: nil).destroy_all
       @data = Student.where(group: params['group_name'],

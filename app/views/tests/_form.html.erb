@@ -1,23 +1,22 @@
 
-
 <div class="create_new">
   <%= form_for([@section, @test], :html => {:class => "form-horizontal"}) do |f| %>
       <div class="form_element">
-        <div style="  text-align: center;font-size: 22px;">
-          Create Test
+        <div style="text-align: center;font-size: 22px;">
+          <%=t :create_test %>
         </div>
       </div>
       <div class="form_element">
-        <%= f.text_field :name, class: "field-input-section-name", placeholder: "Test name", autofocus: true %>
+        <%= f.text_field :name, class: "field-input-section-name", placeholder: t(:test_name), autofocus: true %>
       </div>
       <div class="form_element">
         <div class="edit-test-control">
           <%= f.check_box :come_back, :class => "comeback" %>
-          <label>Opportunity to return</label>
+          <label><%=t :to_return %></label>
         </div>
       </div>
       <div class="form_element">
-        <%= f.submit :class => "create_new_section" %>
+        <%= f.submit :class => "create_new_section", :value=> t(:create_test) %>
       </div>
   <% end %>
 </div>
