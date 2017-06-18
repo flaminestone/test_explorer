@@ -2,7 +2,6 @@
   <%= form_for(@student, :html => {:class => "form-signin"}) do |f| %>
       <div class="form_element" style="padding-bottom: 5px;">
         <div style="text-align: center;font-size: 22px;">
-          Please sign up
           <%=t :sign_up %>
         </div>
       </div>
@@ -16,7 +15,7 @@
       <%= f.hidden_field :test_result_name, :value => params[:test] %>
 
       <div class="form_element">
-        <input type="submit" name="commit" value="Start" class="create_new_section">
+        <input type="submit" name="commit" value=<%= t :start %> class="create_new_section">
       </div>
 <% end %>
 </div>

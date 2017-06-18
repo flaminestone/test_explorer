@@ -1,10 +1,17 @@
 class ConsidersController < ApplicationController
   def calculate_result
-    unless params.has_key?(:questions)
-      render text: "Ничего не выбрано, а значит нет и результатов"
+    @session_lost = false
+    if session[:current_user_id].nil?
+      @session_lost = true
       return
     end
+    @current_student = Student.all.find(session[:current_user_id])
     general_result = 0
+
+    unless params.has_key?(:questions)
+      @result = general_result
+      return
+    end
     results = params.require(:questions) # "id_question"=>{"answer_1" => "1", "answer_1" => "1", "answer_3" => "1"} ect
     results.keys.each do |current_question_id| # проходим по всем вопросам в тесте, на которые дали ответы
       result = 0 # result for current question
@@ -33,11 +40,6 @@ _______¶¶____¶____________¶____________¶____¶¶¶
 _________¶¶¶¶___________________________8¶¶¶
 ______________¶¶¶¶¶_______________¶¶¶¶¶
 ___________________¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶"
-    if session[:current_user_id].nil?
-      render text: "Сессия потеряна. Вернитесь назад"
-      return
-    end
-    @current_student = Student.all.find(session[:current_user_id])
     @current_student.update(:result => general_result.to_s)
     @result = (100.0 / possible_result) * general_result
     session[:current_user_id] = nil

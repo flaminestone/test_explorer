@@ -1,6 +1,13 @@
+<% if @session_lost %>
+    <div class="create_new">
+      <div class="form_element"><span><%= t :session_is_lost %></span></div>
+      <a href="/"><%= t :back_to_sections %></a>
+    </div>
+    <% else %>
 <div class="create_new">
-  <div class="form_element"><span>Name: </span><span><b><%= @current_student.name %></b></span></div>
-  <div class="form_element"> <span>Group: </span><span><b><%= @current_student.group %></b></span></div>
-  <div class="form_element"> <span>Result: <h2><b><%= @result %></b>%</h2></span></div>
-  <a href="/">Back to sections</a>
+  <div class="form_element"><span><%= t :name %>: </span><span><b><%= @current_student.name %></b></span></div>
+  <div class="form_element"> <span><%= t :group %>: </span><span><b><%= @current_student.group %></b></span></div>
+  <div class="form_element"> <span><%= t :result %>: <h2><b><%= @result %></b>%</h2></span></div>
+  <a href="/"><%= t :back_to_sections %></a>
 </div>
+<% end %>
