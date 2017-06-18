@@ -2,11 +2,11 @@
   <div class="naming-block">
     <% if user_signed_in? %>
         <%= button_to '+', new_section_test_path(@section), :class => 'hided', id: 'add_new_element_selector' %>
-        <h1>Tests
+        <h1><%=t :tests %>
           <div class="add_new_element" onclick="$('#add_new_element_selector').click()">+</div>
         </h1>
     <% else %>
-        <h1>Tests</h1>
+        <h1><%=t :tests %></h1>
     <% end %>
   </div>
   <div class="row">
@@ -19,15 +19,15 @@
                   <%= test[0] %>
                   <% if user_signed_in? %>
                       <a class="link add_question_button" href="#" value="<%= {test[0] => test[1]}.to_json %>">
-                        <span class="add_question_link">Add Question</span>
+                        <span class="add_question_link"><%=t :add_question %></span>
                       </a>
 
                       <a class="link myBtn" id="myBtn" value="<%= {test[0] => test[1]}.to_json %>">
-                        <span class="admin_link">Edit</span>
+                        <span class="admin_link"><%=t :edit %></span>
                       </a>
 
                       <a class="link delete_button" value="<%= {test[0] => test[1]}.to_json %>" >
-                        <span class="admin_link">Delete</span>
+                        <span class="admin_link"><%=t :delete %></span>
                      </a>
                    <% end %>
                   <span class="badge count-of-tests" value="<%= {test[0] => test[1]}.to_json %>" name=<%= test[0] %>>
@@ -60,7 +60,7 @@
         <input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden">
         <div class="form_element">
           <div style="text-align: center;font-size: 22px;">
-            Edit test
+            <%=t :edit_test %>
           </div>
         </div>
         <div class="form_element">
@@ -69,7 +69,7 @@
         <div class="form_element">
           <div class="edit-test-control">
             <input name="test[come_back]" type="hidden" value="0"><input class="comeback" type="checkbox" value="1" checked="checked" name="test[come_back]" id="test_come_back">
-            <label>Opportunity to return</label>
+            <label><%=t :to_return %></label>
           </div>
         </div>
         <div class="form_element">

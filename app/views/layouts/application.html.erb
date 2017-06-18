@@ -13,14 +13,12 @@
   </div>
   <div class="log-in-box">
  <% if user_signed_in? %>
-        <a class="link login-bottom" href="/groups"><div class="user-name" style="color: #ff0000"> Groups</div></a>
-        <span class="navbar-text" style="margin-top: 7px;">Signed in as <%= current_user.email %></span>
-         <a class="link login-bottom"  href= <%= destroy_user_session_path %> data-method="delete" rel="nofollow"><div class="user-name"> Logout</div></a>
+        <a class="link login-bottom" href="/groups"><div class="user-name" style="color: #ff0000"> <%=t :groups %></div></a>
+        <span class="navbar-text" style="margin-top: 7px;"><%=t :signed_in_as %> <%= current_user.email %></span>
+         <a class="link login-bottom"  href= <%= destroy_user_session_path %> data-method="delete" rel="nofollow"><div class="user-name"><%=t :logout %></div></a>
    <% else %>
-        <a class="link login-bottom" href=<%= new_user_session_path %>><div class="user-name"> Login for Theater</div> </a>
+        <a class="link login-bottom" href=<%= new_user_session_path %>><div class="user-name"><%=t :login_for_Theater %></div></a>
    <% end %>
-
-
   </div>
 </div>
 <div class="mainpage">

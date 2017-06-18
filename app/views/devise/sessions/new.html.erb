@@ -1,12 +1,12 @@
 <div class="login_or_registr_box">
     <%= form_for(resource, as: resource_name, :html => {:class => "form-signin"}, url: session_path(resource_name)) do |f| %>
-      <p class="form-signin-heading">Login</p>
-        <%= f.email_field :email, autofocus: true, :class => 'form-control field-input', :type => "email", :placeholder => "Email address", :required => "" %>
-        <%= f.password_field :password, autocomplete: "off", autofocus: true, :class => 'form-control field-input', :type => "password", :placeholder => "Password", :required => "" %>
-        <%= f.submit "Sign in", :class => "btn-login" %>
+      <p class="form-signin-heading"><%=t :login %></p>
+        <%= f.email_field :email, autofocus: true, :class => 'form-control field-input', :type => "email", :placeholder => t(:email), :required => "" %>
+        <%= f.password_field :password, autocomplete: "off", autofocus: true, :class => 'form-control field-input', :type => "password", :placeholder => t(:password), :required => "" %>
+        <%= f.submit t(:sign_in), :class => "btn-login" %>
 <% end %>
 </div>
 <a href=<%= new_registration_path(resource_name)%> class="link">
 <div class="messages_no_circle link">
-   Press to her if you have not account
+  <%=t :press_for_registration %>
 </div></a>

@@ -1,0 +1,39 @@
+
+ru:
+  sections: "Секции"
+  groups: "Группы"
+  signed_in_as: "Авторизация"
+  logout: "Выйти"
+  login: "Войти"
+  login_for_Theater: "Вход для преподавателя"
+  please_sign_up: "Регистрация"
+  email: "Email адрес"
+  password: "Пароль"
+  password_confirm: "Подтвердите пароль"
+  secret: "Ключ"
+  sign_up: "Регистрация"
+  sign_in: "Вход"
+  press_for_login: "Нажмите сюда для входа в систему если у вас есть аккаунт"
+  press_for_registration: "Нажмите сюда если у вас нет аккаунта"
+  create_section: "Создать секцию"
+  section_name: 'Имя секции'
+  tests: 'Тесты'
+  add_question: 'Добавить вопрос'
+  edit: 'Изменить'
+  edit_test: 'Изменить тест'
+  delete: 'Удалить'
+  to_return: 'Возможность вернуться назад'
+  groups: 'Группы'
+  student_name: 'Имя студента'
+  group: "Группа"
+  create_test: "Создать тест"
+  test_name: "Имя теста"
+  question: "Вопрос"
+  add_answer: "Добавить ответ"
+  true_variant: "Верный вариант ответа"
+  edit_question_name: "Редактировать вопрос"
+  question_name: "Вопрос"
+  update_question_name: "Обновить вопрос"
+  you_sure: "Вы уверены?"
+  add_new_question: "Добавить новый вопрос"
+  finish: "Завершить"
