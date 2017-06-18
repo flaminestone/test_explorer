@@ -10,6 +10,7 @@ class ConsidersController < ApplicationController
 
     unless params.has_key?(:questions)
       @result = general_result
+      session[:current_user_id] = nil
       return
     end
     results = params.require(:questions) # "id_question"=>{"answer_1" => "1", "answer_1" => "1", "answer_3" => "1"} ect
