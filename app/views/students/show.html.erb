@@ -5,8 +5,8 @@
     <div class="block-element">
         <% if @name.nil? %>
             <a class="section-data"><%= current_data.name %></a>
-            <span class="section-data" style="float: right;   margin-right: 15px;"><%= current_data.result %></span>
-            <span class="section-data" style="float: right;   margin-right: 15px;"><%= current_data.created_at %></span>
+            <span class="section-data result-data"><%= current_data.result %></span>
+            <span class="section-data result-data"><%= current_data.created_at.strftime("%F %R") %></span>
       <% else %>
             <%= link_to current_data, params.merge({@key => current_data}), class: 'section-data' %>
       <% end %>

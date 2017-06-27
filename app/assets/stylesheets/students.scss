@@ -1,7 +1,11 @@
 // Place all the styles related to the Students controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.date_of_update {
+.date_of_update, .student-section-data {
   margin-right: 15px;
   float: right;
+}
+.result-data{
+  float: right;
+  margin-right: 15px;
 }
