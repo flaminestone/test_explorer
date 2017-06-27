@@ -29,6 +29,8 @@
   padding: 5px 15px 5px 15px;
 }
 .next, .prev{
+  height: 50px;
+  width: 70px;
   border: 1px solid #000000;
   display: inline-block;
   color: #333;
@@ -56,6 +58,7 @@
   cursor:pointer;
 }
 .current_answer{
+  text-align: center;
   background-color: rgb(255, 255, 255);
   padding: 5px;
   display: inline-block;

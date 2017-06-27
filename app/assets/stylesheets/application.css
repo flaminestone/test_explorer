@@ -124,11 +124,12 @@ a.login-bottom:hover {
     width: 500px;
     margin: auto;
     margin-top: 30px;
-
 }
 .variant_selection{
     width: 50px;
     background-color: #FAFAFA;
+    margin-left: 15px;
+    height: 100%;
 }
 .block-element {
     margin: auto;
