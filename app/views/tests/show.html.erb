@@ -1,6 +1,8 @@
 <%= form_tag("/consider", method: "post") do %>
         <div class="question-buttons">
-          <button class="prev">&lt;&lt;</button>
+          <% if  @test.come_back %>
+              <button class="prev">&lt;&lt;</button>
+          <% end %>
           <button class="next">&gt;&gt;</button>
           <button type="submit" name="commit" value="finish" class="finish-button">
             <span style="font-size: large"><%=t :finish %></span>
