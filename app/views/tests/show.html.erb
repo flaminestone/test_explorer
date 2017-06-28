@@ -15,7 +15,8 @@
                 <div class="question-name">
                  <p>Question <%= i + 1 %> (<%= @questions.size %>): <b><%= question.name %></b></p>
                 </div>
-                <div class="answers">
+                <div class="answers" value="<%= question.variants.where(answer: true).count == 1 %>">
+
                   <% question.variants.each do |current_variant| %>
                       <div class="current_answer">
                        <%= check_box_tag("[questions]#{question.id}[#{current_variant.id}]".to_sym, '0', false, :class => 'checkbox hided') %>
@@ -27,7 +28,6 @@
                         <h3><%= current_variant.name %></h3>
                       </div>
                       </div>
-
                 <% end %>
                 </div>
               </li>
@@ -47,12 +47,21 @@
     });
 
     $(".current_answer").on('click', function () {
-        if ($(this).children('.checkbox').is(":checked")) {
-            $(this).find('input[type=checkbox]').prop('checked', false);
-            this.style.backgroundColor = "rgb(255, 255, 255)"
-        } else {
+          if ($(this).parent('.answers')[0].getAttribute('value') === 'true') {
+            $(this).parent('.answers').find('input[type=checkbox]').prop('checked', false);
+            $(this).parent('.answers').find('.current_answer').removeClass('selected');
             $(this).find('input[type=checkbox]').prop('checked', true);
-            this.style.backgroundColor = "rgb(204, 255, 204)"
+            $(this).addClass('selected');
+        } else  {
+            if ($(this).children('.checkbox').is(":checked")) {
+                console.log($(this).children('.checkbox').is(":checked"));
+                $(this).find('input[type=checkbox]').prop('checked', false);
+                $(this).removeClass('selected');
+            } else {
+                console.log($(this).children('.checkbox').is(":checked"));
+                $(this).find('input[type=checkbox]').prop('checked', true);
+                $(this).addClass('selected');
+            }
         }
     });
 </script>
