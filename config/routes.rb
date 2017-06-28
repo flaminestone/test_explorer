@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   post '/consider' => 'considers#calculate_result'
   get '/consider' => 'considers#calculate_result'
   post '/students/new' => 'students#new'
-
+  post '/signup', to: 'users#create'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
