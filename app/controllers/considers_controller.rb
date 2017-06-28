@@ -41,8 +41,8 @@ _______¶¶____¶____________¶____________¶____¶¶¶
 _________¶¶¶¶___________________________8¶¶¶
 ______________¶¶¶¶¶_______________¶¶¶¶¶
 ___________________¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶"
-    @current_student.update(:result => general_result.to_s)
     @result = (100.0 / possible_result) * general_result
+    @current_student.update(:result => {all: possible_result, current: general_result, persent: @result}.to_json)
     session[:current_user_id] = nil
   end
 
