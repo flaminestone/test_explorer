@@ -85,10 +85,7 @@
 //      console.log($(this).attr("name"));
       test_data = JSON.parse($(this).attr('value'));
       variant = $("select[name='" + $(this).attr("name") + "']")[0].selectedIndex + 1;
-      console.log(variant);
-      console.log(test_data);
-      console.log(Object.values(test_data)[0]['variants'][variant]['questions']);
-      $(".count-of-tests[name='" +  $(this).attr("name") + "']").text(Object.values(test_data)[0]['variants'][variant]['questions'])
+      $(this).parents(".section_item").children(".count-of-tests").text(Object.values(test_data)[0]['variants'][variant]['questions'])
   });
 
     $(".myBtn").click(function () {
