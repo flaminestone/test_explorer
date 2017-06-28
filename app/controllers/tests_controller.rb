@@ -14,7 +14,7 @@ class TestsController < ApplicationController
   def show
     set_test
     @section = get_section
-    @questions = @test.questions
+    @questions = @test.questions.sort_by { rand }
   end
 
   # GET /tests/new
