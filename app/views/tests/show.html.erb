@@ -14,11 +14,10 @@
                  <p>Question <%= i + 1 %> (<%= @questions.size %>): <b><%= question.name %></b></p>
                 </div>
                 <div class="answers">
-                <% question.variants.each do |current_variant| %>
+                  <% question.variants.each do |current_variant| %>
                       <div class="current_answer">
-                        <%= check_box_tag("[questions]#{question.id}[#{current_variant.id}]".to_sym, '0', false, :class => 'checkbox hided') %>
-
-                      <div class="big-answer-image" id="<%= "[questions]#{question.id}[#{current_variant.id}]".to_sym %>" style="background: url(<%= current_variant.avatar.url %>) 100% 100% no-repeat;
+                       <%= check_box_tag("[questions]#{question.id}[#{current_variant.id}]".to_sym, '0', false, :class => 'checkbox hided') %>
+                      <div class="big-answer-image <%= 'hidden' if  current_variant.avatar.url == "/images/original/missing.png"  %>" id="<%= "[questions]#{question.id}[#{current_variant.id}]".to_sym %>" style="background: url(<%= current_variant.avatar.url %>) 100% 100% no-repeat;
                           background-size: contain;
                           background-position: 50% 50%; cursor:pointer;">
                       </div>
