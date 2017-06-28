@@ -10,6 +10,8 @@ ru:
   email: "Email адрес"
   password: "Пароль"
   password_confirm: "Подтвердите пароль"
+  password_confirm_faile: "Введенные пароли не совпадают"
+  secret_faile: "Ключ неверен"
   secret: "Ключ"
   sign_up: "Регистрация"
   sign_in: "Вход"

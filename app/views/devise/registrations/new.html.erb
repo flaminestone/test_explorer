@@ -1,12 +1,18 @@
 <div class="login_or_registr_box">
-  <%= form_for(resource, as: resource_name, :html => {:class => "form-signin"}, url: registration_path(resource_name)) do |f| %>
+  <%= form_for(resource, as: resource_name, :html => {:class => "form-signin"}, url: "/signup") do |f| %>
       <p class="form-signin-heading"><%=t :please_sign_up %></p>
       <%= devise_error_messages! %>
       <%= f.email_field :email, autofocus: true, :class => 'form-control field-input', :type => "email", :placeholder => t(:email), :required => "" %>
       <%= f.password_field :password, autocomplete: "off", autofocus: true, :class => 'form-control field-input', :type => "password", :placeholder => t(:password), :required => "" %>
       <%= f.password_field :password_confirmation, autocomplete: "off", autofocus: true, :class => 'form-control field-input margin_zero', :type => "password", :placeholder => t(:password_confirm) , :required => "" %>
-      <%= f.password_field :password_confirmation, autocomplete: "off", autofocus: true, :class => 'form-control field-input margin_zero', :placeholder => t(:secret) , :required => "" %>
+      <%= f.password_field :secret, autocomplete: "off", autofocus: true, :class => 'form-control field-input margin_zero', :placeholder => t(:secret) , :required => "" %>
       <%= f.submit t(:sign_up), :class => "btn-login" %>
+  <% end %>
+  <% unless flash[:error].nil? %>
+  <p id="error" style="text-align: center; color: #730E15">
+    <% flash[:error].each do |error|  %>
+    <%= error %><br/>
+  <% end %></p>
   <% end %>
 </div>
 <a href=<%= new_session_path(resource_name) %> class="link">

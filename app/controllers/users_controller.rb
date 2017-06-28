@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:create]
 
   before_action :set_user, only: [:show, :edit, :update] # probably want to keep using this
 
@@ -18,6 +18,24 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
 
+  end
+
+  def create
+    errors = []
+    unless params[:user][:password] == params[:user][:password_confirmation]
+      errors << t(:password_confirm_faile)
+    end
+    unless params[:user][:secret] == ENV['Secret']
+      errors << t(:secret_faile)
+    end
+    if errors.empty?
+      user = User.create!({:email =>  params[:user][:email], :password =>  params[:user][:password], :password_confirmation =>  params[:user][:password_confirmation] })
+      session[:current_user_id] = user.id
+      redirect_to '/users/sign_in'
+    else
+      flash[:error] = errors
+      redirect_to new_user_registration_path(User.new())
+    end
   end
 
   # # PATCH/PUT /users/1
